@@ -1,0 +1,31 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: "class",
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        // 🔹 Base colors (as-is)
+        default: "#000000",
+        primary: "#2563EB",
+        secondary: "#050814",
+        info: "#0EA5E9",
+        success: "#22C55E",
+        danger: "#EF4444",
+        warning: "#F59E0B",
+
+        // 🔹 Dark variants (NEW)
+        "default-dark": "#F8FAFC",    // slate-50
+        "secondary-dark": "#94A3B8",  // slate-400
+      },
+      boxShadow: {
+        "glow-primary": "0 16px 45px #2563ebbf",
+      },
+    },
+  },
+  plugins: [],
+};
