@@ -6,7 +6,6 @@ import { ScrollArea, useSidebarState } from "@/components/sidebar-template";
 import Sidebar from "../common/sidebar";
 import Header from "../common/header";
 
-
 export default function LayoutClient({
   children,
 }: {
@@ -18,21 +17,21 @@ export default function LayoutClient({
     <div className="flex h-screen w-screen md:overflow-hidden">
       <div
         className={cn(
-          "h-screen border-r border-muted transition-all duration-300 ease-in-out bg-secondary",
-          isCollapsed
-            ? "w-[80%] absolute z-40 left-0 top-0 shadow-lg md:static md:w-64"
-            : "w-0 md:w-64"
+          "h-screen border-r border-muted transition-all duration-300 ease-in-out bg-secondary overflow-hidden",
+          isCollapsed ? "w-[80%] absolute z-40 left-0 top-0 shadow-lg" : "w-0",
+
+          isCollapsed ? "md:w-0 md:static" : "md:w-64 md:static"
         )}
       >
         <Link href="/" className="h-24 flex items-center px-6 text-white">
           <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-[12px] bg-[#2563eb] flex items-center justify-center">
+            <div className="h-9 w-9 rounded-[12px] bg-primary flex items-center justify-center">
               <div className="h-5 w-4 rounded-[3px] border border-white/80 relative overflow-hidden">
                 <div className="absolute inset-y-0 left-[45%] w-px bg-white/70"></div>
               </div>
             </div>
             <div className="leading-tight">
-              <div className="text-[16px] font-semibold">MathMaster</div>
+              <div className="text-[16px] font-semibold">SYSKILL</div>
               <div className="text-[11px] text-slate-400 mt-[2px]">
                 Grade 6-8 Syllabus
               </div>
@@ -53,9 +52,7 @@ export default function LayoutClient({
       )}
       <div className="flex-1 flex flex-col justify-start bg-[#F6F9FF] dark:bg-[#050814] w-full max-w-full">
         <Header setIsCollapsed={setIsCollapsed} isCollapsed={isCollapsed} />
-        <ScrollArea
-          className="w-full max-w-[980px] px-4 sm:px-8 lg:px-16 py-4 lg:py-10 md:m-auto dark:bg-secondary dark:text-slate-100"
-        >
+        <ScrollArea className="w-full max-w-[980px] px-4 sm:px-8 lg:px-16 py-4 lg:py-10 md:m-auto dark:bg-secondary dark:text-slate-100">
           <div>{children}</div>
         </ScrollArea>
       </div>

@@ -69,7 +69,7 @@ export function Nav({ links, isCollapsed }: NavProps) {
       data-collapsed={isCollapsed}
       className="group flex min-h-[calc(100vh-48px)] flex-col py-2 data-[collapsed=true]:gap-1 data-[collapsed=true]:py-2 dark:border-muted dark:bg-muted dark:text-muted-foreground"
     >
-      <div className="px-6 pt-3 pb-2 text-[11px] uppercase tracking-[0.16em] text-slate-500">
+      <div className="px-6 pt-3 pb-2 text-[11px] uppercase tracking-[0.16em] text-slate-400">
         Test Syllabus (Nov 29)
       </div>
 
@@ -163,7 +163,6 @@ export function Nav({ links, isCollapsed }: NavProps) {
                   </PopoverContent>
                 </Popover>
               ) : (
-                // --- FULL (expanded) menu: desktop or mobile when sidebar is open ---
                 <>
                   <div
                     onClick={() => handleToggleDropdown(index)}
@@ -185,8 +184,8 @@ export function Nav({ links, isCollapsed }: NavProps) {
                       className={cn(
                         "flex w-full items-center justify-between text-balance transition-colors text-[13px]",
                         pathName === link.href
-                          ? "bg-primary flex items-center justify-between rounded-2xl px-4 py-3 mb-2 text-[13px] text-white shadow-[0_16px_45px_rgba(37,99,235,0.75)]"
-                          : "text-slate-300 hover:bg-[#1e293bb3] px-4 py-3 rounded-2xl"
+                          ? "bg-primary flex items-center justify-between rounded-2xl px-4 py-3 mb-2 text-[13px] text-white"
+                          : "text-white hover:bg-[#1e293bb3] px-4 py-3 rounded-2xl"
                       )}
                     >
                       <div className="flex items-start gap-3 text-[13px]">
@@ -223,7 +222,7 @@ export function Nav({ links, isCollapsed }: NavProps) {
                   {link.dropdownItems && (
                     <div
                       className={cn(
-                        "ml-5 mt-1 space-y-1 border-l-2 bg-background",
+                        "ml-5 mt-1 space-y-2 bg-slate-400 text-white pl-5 py-4 rounded",
                         "transition-opacity duration-300 ease-in-out",
                         openDropdownIndex === index
                           ? "block translate-y-0 opacity-100"
@@ -245,7 +244,7 @@ export function Nav({ links, isCollapsed }: NavProps) {
                             "flex items-center justify-start gap-2 rounded-none pl-0"
                           )}
                         >
-                          <dropdownItem.icon className="h-4 w-4" />
+                         
                           {dropdownItem.title}
                           {dropdownItem.label && (
                             <span
