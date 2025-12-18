@@ -27,9 +27,9 @@ export const PageMetaHeader = ({
   const safeChapter = safeText(chapter, "N/A");
   const safeGrade = safeText(grade, "N/A");
 
-  const safeBg = safeClass(bgColor) ?? "bg-[#e3ebff] dark:bg-slate-800";
+  const safeBg = safeClass(bgColor) ?? "bg-primary_shade dark:bg-slate-800";
   const safeTextColor =
-    safeClass(textColor) ?? "text-[#2563eb] dark:text-slate-300";
+    safeClass(textColor) ?? "text-primary dark:text-slate-300";
 
   const outerTextClass = textColor
     ? undefined

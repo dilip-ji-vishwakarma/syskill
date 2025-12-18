@@ -19,7 +19,7 @@ export const ExpressionCard = ({
   return (
     <div
       className={cn(
-        "w-full rounded-3xl bg-[#070b18] text-center py-10 px-6 shadow-[inset_0_0_30px_rgba(255,255,255,0.05)]",
+        "w-full rounded-3xl bg-primary text-center py-10 px-6 shadow-[inset_0_0_30px_rgba(255,255,255,0.05)]",
         typeof className === "string" && className
       )}
     >
