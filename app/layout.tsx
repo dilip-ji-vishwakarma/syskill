@@ -1,8 +1,8 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
-import { SidebarStateProvider } from "@/components/core";
-import LayoutClient from "@/components/core/sidebar-template/layout-client";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/core/sidebar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -14,16 +14,22 @@ export const metadata = {
   description: "Interactive Learning Module",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <SidebarStateProvider initialCollapsed={false}>
-          <LayoutClient>
-            {children}
-          </LayoutClient>
-        </SidebarStateProvider>
+          <SidebarProvider>
+            <AppSidebar />
+            <main>
+              <SidebarTrigger />
+              {children}
+            </main>
+          </SidebarProvider>
         </ThemeProvider>
       </body>
     </html>
