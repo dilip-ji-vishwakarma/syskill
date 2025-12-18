@@ -1,13 +1,15 @@
-import { Counter } from "@/components/counter";
-import { Description } from "@/components/description";
-import { Expression, ExpressionCard } from "@/components/expression";
-import { PageMetaHeader } from "@/components/page-meta-header";
-import { PageTitle } from "@/components/page-title";
-import { QuestionCard } from "@/components/question-card";
-import { Title } from "@/components/title";
-import { VariableCard } from "@/components/variable-card";
-import { VisualCard } from "@/components/visual-card";
-
+import {
+  Counter,
+  Expression,
+  ExpressionCard,
+  PageMetaHeader,
+  PageTitle,
+  QuestionCard,
+  Title,
+  VariableCard,
+  VisualCard,
+} from "@/components/core";
+import { Paragraph } from "@/components/core/typography";
 
 export default function Home() {
   const questions = [
@@ -43,31 +45,38 @@ export default function Home() {
   return (
     <div className="container mx-auto px-4 space-y-4 my-5">
       <Title as="h6">Gemini</Title>
-      <PageMetaHeader chapter={6} grade="Grade 6–8 Math" />
+      <PageMetaHeader
+  chapter={3}
+  grade="Grade 7"
+  chapterHref="/chapters/3"
+  gradeHref="/grades/7"
+/>
+
       <PageTitle
         title="Algebraic Expressions"
+        titleClassName="text-xl md:text-2xl lg:text-3xl"
         subtitle="Variables are just placeholders for numbers."
       />
-      <Description>
+      <Paragraph>
         An algebraic expression is made up of <strong>terms.</strong>
-      </Description>
-      <Description>
+      </Paragraph>
+      <Paragraph>
         In math, we call this <strong>{`"Combining Like Terms".`}</strong>
-      </Description>
+      </Paragraph>
       <VisualCard>
         <div className="md:flex items-start justify-center gap-28 mb-8 text-center">
-        <VariableCard
-          icon={<span className="text-[56px] mb-3">🍎</span>}
-          title={"Variable 'a' (Apples)"}
-        >
-          <Counter initialValue={2} min={0} max={10} />
-        </VariableCard>
-        <VariableCard
-          icon={<span className="text-[56px] mb-3">🍌</span>}
-          title={"Variable 'b' (Bananas)"}
-        >
-          <Counter initialValue={2} min={0} max={10} />
-        </VariableCard>
+          <VariableCard
+            icon={<span className="text-[56px] mb-3">🍎</span>}
+            title={"Variable 'a' (Apples)"}
+          >
+            <Counter initialValue={2} min={0} max={10} />
+          </VariableCard>
+          <VariableCard
+            icon={<span className="text-[56px] mb-3">🍌</span>}
+            title={"Variable 'b' (Bananas)"}
+          >
+            <Counter initialValue={2} min={0} max={10} />
+          </VariableCard>
         </div>
         <ExpressionCard className="my-10">
           <Title
@@ -78,16 +87,18 @@ export default function Home() {
             THE ALGEBRAIC EXPRESSION
           </Title>
 
-          <Expression
-            terms={[
-              { value: "2a", color: "text-red-400" },
-              { value: "3b", color: "text-yellow-300" },
-            ]}
-          />
+           <Expression
+    terms={[
+      { value: "x", tone: "accent" },
+      { value: 5 },
+      { value: "y", tone: "muted" },
+    ]}
+    separator="+"
+  />
 
-          <Description className="text-slate-400 mt-6 text-sm">
+          <Paragraph className="text-slate-400 mt-6 text-sm">
             {`Notice: You cannot combine them into "5ab" because they are different fruits (variables)!`}
-          </Description>
+          </Paragraph>
         </ExpressionCard>
       </VisualCard>
 

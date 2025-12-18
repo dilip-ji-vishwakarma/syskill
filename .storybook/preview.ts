@@ -1,15 +1,11 @@
-import type { Preview } from '@storybook/nextjs-vite'
-import "../app/globals.css"
+import "../app/globals.css";
 
-const preview: Preview = {
-  parameters: {
-    controls: {
-      matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
-      },
-    },
+export const parameters = {
+  themes: {
+    default: "light",
+    list: [
+      { name: "light", class: "", color: "#ffffff" },
+      { name: "dark", class: "dark", color: "#000000" },
+    ],
   },
 };
-
-export default preview;

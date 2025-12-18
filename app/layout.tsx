@@ -1,8 +1,8 @@
-import { SidebarStateProvider } from "@/components/sidebar-template";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import LayoutClient from "@/components/sidebar-template/layout-client";
 import { ThemeProvider } from "next-themes";
+import { SidebarStateProvider } from "@/components/core";
+import LayoutClient from "@/components/core/sidebar-template/layout-client";
 
 const inter = Inter({
   subsets: ["latin"],
