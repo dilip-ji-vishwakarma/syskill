@@ -34,7 +34,7 @@ export function QuestionCard({
 
   return (
     <section className="mb-10">
-      <Card className="max-w-[720px] rounded-2xl">
+      <Card className="max-w-full rounded-2xl">
         <CardContent className="px-8 py-6 space-y-5">
           <div className="flex items-start gap-3">
             <div className="flex h-7 w-7 items-center justify-center rounded-full bg-muted text-sm font-semibold">

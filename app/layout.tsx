@@ -1,8 +1,9 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/core/sidebar";
+import { TopBar } from "@/components/core";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,11 +25,15 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SidebarProvider>
+            <div className="flex min-h-screen w-full">
             <AppSidebar />
-            <main>
-              <SidebarTrigger />
+            <main className="flex-1 rounded-xl">
+              <TopBar />
+              <div className="md:ml-12 bg-background mt-[80px]">
               {children}
+              </div>
             </main>
+            </div>
           </SidebarProvider>
         </ThemeProvider>
       </body>

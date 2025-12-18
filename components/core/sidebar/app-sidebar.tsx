@@ -43,30 +43,35 @@ export function AppSidebar() {
   const isCollapsed = state === "collapsed";
 
   return (
-    <Sidebar variant="sidebar" collapsible="icon">
-      <SidebarHeader>
-        <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold">
+    <Sidebar
+      variant="sidebar"
+      collapsible="icon"
+      className="text-muted space-y-4"
+    >
+      <SidebarHeader className="bg-primary-foreground border-b-2 dark:bg-muted/20 dark:text-muted">
+        <div className="flex items-center gap-3 py-4">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-warning font-bold">
             S
           </div>
           {!isCollapsed && (
             <div className="flex flex-col leading-none">
-              <Paragraph className="text-sm font-semibold tracking-tight">
+              <Paragraph className="text-sm font-semibold tracking-tight text-white">
                 SYSKILL
               </Paragraph>
-              <Caption className="text-xs text-muted-foreground">
+              <Caption className="text-xs  text-muted dark:text-muted">
                 Learning Platform
               </Caption>
             </div>
           )}
         </div>
       </SidebarHeader>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Test Syllabus (Nov 29)</SidebarGroupLabel>
-
+      <SidebarContent className="bg-primary-foreground">
+        <SidebarGroup className="space-y-3">
+          <SidebarGroupLabel className="text-warning">
+            Test Syllabus (Nov 29)
+          </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="space-y-2">
               {sidebarItems.map((item) => {
                 const Icon = item.icon;
 
@@ -81,16 +86,16 @@ export function AppSidebar() {
                       className="group/collapsible"
                     >
                       <SidebarMenuItem>
-                        <CollapsibleTrigger asChild>
+                        <CollapsibleTrigger asChild className="hover:bg-warning/60">
                           {/* <Tooltip>
                             <TooltipTrigger asChild> */}
-                              <SidebarMenuButton>
-                                {Icon && <Icon />}
-                                {!isCollapsed && <span>{item.title}</span>}
+                          <SidebarMenuButton>
+                            {Icon && <Icon />}
+                            {!isCollapsed && <span>{item.title}</span>}
 
-                                <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180 group-data-[collapsible=icon]:hidden" />
-                              </SidebarMenuButton>
-                            {/* </TooltipTrigger>
+                            <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180 group-data-[collapsible=icon]:hidden" />
+                          </SidebarMenuButton>
+                          {/* </TooltipTrigger>
                             {isCollapsed && (
                               <TooltipContent side="right">
                                 {item.title}
@@ -126,6 +131,11 @@ export function AppSidebar() {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <SidebarMenuButton
+                          className="
+    data-[active=true]:bg-warning
+    data-[active=true]:text-muted
+    hover:bg-warning/60
+  "
                           asChild
                           isActive={pathname === item.url}
                         >
@@ -149,7 +159,7 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="bg-primary-foreground border-t-2">
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
