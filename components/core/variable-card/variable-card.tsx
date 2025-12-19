@@ -20,7 +20,7 @@ export function VariableCard({
   return (
     <Card
       className={cn(
-        "inline-flex items-center rounded-3xl bg-secondary-foreground dark:bg-secondary",
+        "items-center rounded-3xl bg-secondary-foreground dark:bg-secondary",
         className
       )}
     >

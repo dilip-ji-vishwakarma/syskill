@@ -47,7 +47,7 @@ export function VisualCard({
             {title}
           </Title>
         </CardHeader>
-        <CardContent className="px-10 pt-9">
+        <CardContent className="md:px-10 pt-9">
           {children}
         </CardContent>
       </Card>

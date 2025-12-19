@@ -55,7 +55,7 @@ export default function Home() {
         In math, we call this <strong>{`"Combining Like Terms".`}</strong>
       </Paragraph>
       <VisualCard>
-        <div className="md:flex items-start justify-center gap-28 mb-8 text-center">
+        <div className="md:flex items-start justify-center md:gap-28 mb-8 text-center md:space-y-0 space-y-5">
           <VariableCard
             icon={<span className="text-[56px] mb-3">🍎</span>}
             title={"Variable 'a' (Apples)"}
