@@ -18,7 +18,7 @@ export function ExpressionCard({
   return (
     <Card
       className={cn(
-        "w-full rounded-3xl bg-primary text-center",
+        "w-full rounded-3xl bg-background text-center",
         "shadow-[inset_0_0_30px_rgba(255,255,255,0.05)]",
         className
       )}

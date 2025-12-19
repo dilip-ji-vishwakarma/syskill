@@ -48,7 +48,7 @@ export function AppSidebar() {
       collapsible="icon"
       className="text-muted space-y-4"
     >
-      <SidebarHeader className="bg-primary-foreground border-b-2 dark:bg-muted/20 dark:text-muted">
+      <SidebarHeader className="bg-primary border-b-2 dark:bg-muted/20 text-primary-foreground">
         <div className="flex items-center gap-3 py-4">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-warning font-bold">
             S
@@ -58,14 +58,14 @@ export function AppSidebar() {
               <Paragraph className="text-sm font-semibold tracking-tight text-white">
                 SYSKILL
               </Paragraph>
-              <Caption className="text-xs  text-muted dark:text-muted">
+              <Caption className="text-xs text-primary-foreground">
                 Learning Platform
               </Caption>
             </div>
           )}
         </div>
       </SidebarHeader>
-      <SidebarContent className="bg-primary-foreground">
+      <SidebarContent className="bg-primary dark:bg-muted/20 text-primary-foreground">
         <SidebarGroup className="space-y-3">
           <SidebarGroupLabel className="text-warning">
             Test Syllabus (Nov 29)
@@ -86,7 +86,10 @@ export function AppSidebar() {
                       className="group/collapsible"
                     >
                       <SidebarMenuItem>
-                        <CollapsibleTrigger asChild className="hover:bg-warning/60">
+                        <CollapsibleTrigger
+                          asChild
+                          className="hover:bg-warning/60"
+                        >
                           {/* <Tooltip>
                             <TooltipTrigger asChild> */}
                           <SidebarMenuButton>
@@ -133,7 +136,7 @@ export function AppSidebar() {
                         <SidebarMenuButton
                           className="
     data-[active=true]:bg-warning
-    data-[active=true]:text-muted
+    data-[active=true]:text-primary-foreground
     hover:bg-warning/60
   "
                           asChild
@@ -159,7 +162,7 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className="bg-primary-foreground border-t-2">
+      <SidebarFooter className="bg-primary dark:bg-muted/20 border-t-2 text-primary-foreground">
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
@@ -171,7 +174,7 @@ export function AppSidebar() {
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 side="top"
-                className="w-[--radix-popper-anchor-width]"
+                className="w-[--radix-popper-anchor-width] bg-primary-foreground text-secondary"
               >
                 <DropdownMenuItem>
                   <span>Account</span>

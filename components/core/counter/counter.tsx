@@ -44,7 +44,7 @@ export function Counter({
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-4 rounded-full bg-muted px-6 py-2",
+        "inline-flex items-center gap-4 rounded-full bg-background px-6 py-2",
         className
       )}
     >
@@ -54,7 +54,7 @@ export function Counter({
         onClick={handleDecrement}
         disabled={isMin}
         aria-label="Decrease value"
-        className="rounded-full"
+        className="rounded-full bg-secondary-foreground dark:bg-secondary"
       >
         <Minus className="h-4 w-4" />
       </Button>
@@ -69,7 +69,7 @@ export function Counter({
         onClick={handleIncrement}
         disabled={isMax}
         aria-label="Increase value"
-        className="rounded-full"
+        className="rounded-full bg-secondary-foreground dark:bg-secondary"
       >
         <Plus className="h-4 w-4" />
       </Button>

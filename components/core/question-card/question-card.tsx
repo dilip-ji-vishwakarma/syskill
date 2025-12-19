@@ -37,7 +37,7 @@ export function QuestionCard({
       <Card className="max-w-full rounded-2xl">
         <CardContent className="px-8 py-6 space-y-5">
           <div className="flex items-start gap-3">
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-muted text-sm font-semibold">
+            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-secondary-foreground dark:bg-secondary border text-sm font-semibold">
               ?
             </div>
             <Paragraph className="font-semibold [&:not(:first-child)]:mt-0">
@@ -61,7 +61,7 @@ export function QuestionCard({
                     variant="outline"
                     onClick={() => handleSelect(opt.id)}
                     className={cn(
-                      "w-full justify-between text-left h-auto px-4 py-3 text-sm",
+                      "w-full justify-between text-left h-auto px-4 py-3 text-sm bg-secondary-foreground dark:bg-secondary",
                       isSelected &&
                         isCorrect &&
                         "border-success bg-green-50 text-success",

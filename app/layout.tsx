@@ -27,9 +27,9 @@ export default function RootLayout({
           <SidebarProvider>
             <div className="flex min-h-screen w-full">
             <AppSidebar />
-            <main className="flex-1 rounded-xl">
+            <main className="flex-1 rounded-xl bg-secondary-foreground dark:bg-secondary">
               <TopBar />
-              <div className="md:ml-12 bg-background mt-[80px]">
+              <div className="md:ml-12 bg-secondary-foreground dark:bg-secondary mt-[80px]">
               {children}
               </div>
             </main>

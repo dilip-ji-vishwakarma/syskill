@@ -29,7 +29,7 @@ export function VisualCard({
           className
         )}
       >
-        <CardHeader className="flex h-12 flex-row items-center gap-2 border-b bg-muted px-8 py-0">
+        <CardHeader className="flex h-12 flex-row items-center gap-2 border-b bg-background px-8 py-0">
           {icon ?? (
             <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10">
               <div className="flex items-end gap-0.5">

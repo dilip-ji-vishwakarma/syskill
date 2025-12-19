@@ -14,7 +14,7 @@ type ExpressionProps = {
 };
 
 const toneMap = {
-  default: "text-white",
+  default: "text-info",
   accent: "text-info",
   muted: "text-muted-foreground",
 };
@@ -37,7 +37,7 @@ export function Expression({
       {terms.map((term, index) => (
         <div key={index} className="flex items-center gap-3">
           {index > 0 && (
-            <span className="text-white">
+            <span className="text-warning">
               {separator}
             </span>
           )}

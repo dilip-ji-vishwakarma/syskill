@@ -46,11 +46,11 @@ export default function Home() {
     <div className="container mx-auto px-4 space-y-4 my-5">
       <Title as="h6">Gemini</Title>
       <PageMetaHeader
-  chapter={3}
-  grade="Grade 7"
-  chapterHref="/chapters/3"
-  gradeHref="/grades/7"
-/>
+        chapter={3}
+        grade="Grade 7"
+        chapterHref="/chapters/3"
+        gradeHref="/grades/7"
+      />
 
       <PageTitle
         title="Algebraic Expressions"
@@ -82,21 +82,21 @@ export default function Home() {
           <Title
             as="h4"
             className="mb-4 text-xs tracking-widest"
-            textColor="text-slate-300"
+            textColor="text-secondary dark:text-secondary-foreground"
           >
             THE ALGEBRAIC EXPRESSION
           </Title>
 
-           <Expression
-    terms={[
-      { value: "x", tone: "accent" },
-      { value: 5 },
-      { value: "y", tone: "muted" },
-    ]}
-    separator="+"
-  />
+          <Expression
+            terms={[
+              { value: "x", tone: "accent" },
+              { value: 5, tone: "default" },
+              { value: "y", tone: "muted" },
+            ]}
+            separator="+"
+          />
 
-          <Paragraph className="text-slate-400 mt-6 text-sm">
+          <Paragraph className="text-secondary dark:text-secondary-foreground mt-6 text-sm">
             {`Notice: You cannot combine them into "5ab" because they are different fruits (variables)!`}
           </Paragraph>
         </ExpressionCard>
