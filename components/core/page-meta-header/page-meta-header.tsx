@@ -25,17 +25,17 @@ export function PageMetaHeader({
   className,
 }: PageMetaHeaderProps) {
   return (
-    <Breadcrumb className={cn("mb-5", className)}>
+    <Breadcrumb className={cn( className)}>
       <BreadcrumbList className="gap-3 text-xs font-medium">
         <BreadcrumbItem>
           {chapterHref ? (
             <BreadcrumbLink href={chapterHref}>
-              <span className="rounded-full bg-primary_shade px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-primary">
+              <span className="rounded-full border px-3 py-1 text-[10px] uppercase tracking-[0.18em] dark:text-secondary-foreground">
                 Chapter {chapter}
               </span>
             </BreadcrumbLink>
           ) : (
-            <span className="rounded-full bg-primary_shade px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-primary">
+            <span className="rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-primary">
               Chapter {chapter}
             </span>
           )}

@@ -1,11 +1,12 @@
-"use client"
+"use client";
 
-import { SidebarTrigger, useSidebar } from "@/components/ui/sidebar"
-import { Theme } from "../theme"
-import { cn } from "@/lib/utils"
+import { SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
+import { Theme } from "../theme";
+import { cn } from "@/lib/utils";
+import { PageMetaHeader } from "../page-meta-header";
 
 export const TopBar = () => {
-  const { state } = useSidebar()
+  const { state } = useSidebar();
 
   return (
     <div
@@ -16,8 +17,16 @@ export const TopBar = () => {
         state === "collapsed" && "md:left-[48px]" // 👈 icon sidebar width
       )}
     >
-      <SidebarTrigger />
+      <div className="flex gap-5 items-center">
+        <SidebarTrigger />
+        <PageMetaHeader
+          chapter={3}
+          grade="Grade 7"
+          chapterHref="/chapters/3"
+          gradeHref="/grades/7"
+        />
+      </div>
       <Theme />
     </div>
-  )
-}
+  );
+};

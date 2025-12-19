@@ -2,7 +2,6 @@ import {
   Counter,
   Expression,
   ExpressionCard,
-  PageMetaHeader,
   PageTitle,
   QuestionCard,
   Title,
@@ -44,14 +43,6 @@ export default function Home() {
 
   return (
     <div className="container mx-auto px-4 space-y-4 my-5">
-      <Title as="h6">Gemini</Title>
-      <PageMetaHeader
-        chapter={3}
-        grade="Grade 7"
-        chapterHref="/chapters/3"
-        gradeHref="/grades/7"
-      />
-
       <PageTitle
         title="Algebraic Expressions"
         titleClassName="text-xl md:text-2xl lg:text-3xl"
