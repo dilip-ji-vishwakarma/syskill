@@ -38,3 +38,20 @@
   --background: 222 47% 11%;
   --foreground: 0 0% 100%;
 }
+
+.story-text {
+  font-family: serif;
+  font-size: 20px;
+  line-height: 1.75;
+}
+
+/* DROP CAP */
+.story-text::first-letter {
+  float: left;
+  font-size: 3.5rem;
+  line-height: 1;
+  font-weight: 700;
+  margin-right: 0.5rem;
+  margin-top: 0.25rem;
+}
+
