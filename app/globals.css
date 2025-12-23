@@ -40,18 +40,92 @@
 }
 
 .story-text {
-  font-family: serif;
-  font-size: 20px;
-  line-height: 1.75;
+  @apply text-xl leading-[1.75] first-letter:float-left first-letter:text-[3.5rem] first-letter:leading-none first-letter:font-bold first-letter:mr-2 first-letter:mt-1;
 }
-
-/* DROP CAP */
-.story-text::first-letter {
-  float: left;
-  font-size: 3.5rem;
-  line-height: 1;
-  font-weight: 700;
-  margin-right: 0.5rem;
-  margin-top: 0.25rem;
+.minimal-tiptap-editor a {
+  @apply cursor-pointer text-[blue] underline;
+}
+.ProseMirror-focused {
+  outline: none;
+}
+.tiptap code {
+  @apply bg-[#F6F2FF] text-[black] text-[0.85rem] px-[0.3em] py-[0.25em] rounded-[0.4rem];
+}
+.tiptap blockquote {
+  @apply mx-0 my-6 pl-4 border-l-[3px] border-l-[gray] border-solid;
+}
+.tiptap li {
+  list-style: disc;
+}
+.tiptap ol li {
+  list-style: decimal;
+}
+.tiptap h1 {
+  @apply text-[4rem];
+}
+.tiptap h2 {
+  @apply text-[1.9rem];
+}
+.tiptap h3 {
+  @apply text-[1.1rem];
+}
+.tiptap h4 {
+  @apply text-base;
+}
+.tiptap h5 {
+  @apply text-[0.8rem];
+}
+.tiptap h6 {
+  @apply text-[0.5rem];
+}
+.tiptap iframe {
+  @apply w-full;
+}
+.tiptap table {
+  @apply border-spacing-0 w-full table border border-collapse border-solid border-[#ccc];
+}
+.tiptap th,
+.tiptap td {
+  @apply border text-left px-[15px] py-3 border-solid border-[#ddd];
+}
+.tiptap th {
+  @apply bg-[#F5F4F3] text-[black] font-[bold] uppercase;
+}
+.tiptap td {
+  @apply bg-[white];
+}
+.tiptap tr:hover {
+  @apply bg-[#f1f1f1];
+}
+.tiptap tr:nth-child(even) {
+  @apply bg-[#f9f9f9];
+}
+@media (max-width: 768px) {
+  .tiptap table {
+    @apply w-full block overflow-x-auto overflow-x-scroll w-full;
+  }
+  .tiptap th,
+  .tiptap td {
+    @apply text-sm p-2;
+  }
+  .youtube-embed-style > div {
+    @apply h-fit;
+  }
+  .tiptap h1 {
+    @apply text-[2rem];
+  }
+  .tiptap h2 {
+    @apply text-[1.4rem];
+  }
+}
+.lineEditor-component {
+  @apply flex items-center bg-[#f5f7f9] border text-black p-2 rounded-[5px] border-solid border-[#e0e0e0];
+}
+.lineEditor-container {
+  @apply flex items-center w-full;
+}
+.lineeditor {
+  @apply grow text-sm text-[red];
+  outline: none;
 }
 

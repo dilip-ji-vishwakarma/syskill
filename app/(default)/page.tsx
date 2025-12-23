@@ -8,7 +8,7 @@ import {
   VariableCard,
   VisualCard,
 } from "@/components/core";
-import { TipTapEditor } from "@/components/core/editor/tip-tap/tip-tap-editor";
+import { BlockNoteClient, TipTapEditor } from "@/components/core/editor";
 import { Paragraph } from "@/components/core/typography";
 
 export default function Home() {
@@ -100,6 +100,7 @@ export default function Home() {
         ))}
       </div>
       <TipTapEditor />
+      <BlockNoteClient />
     </div>
   );
 }

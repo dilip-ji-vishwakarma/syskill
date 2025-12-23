@@ -9,8 +9,7 @@ import Highlight from '@tiptap/extension-highlight';
 import TextAlign from '@tiptap/extension-text-align';
 import Link from '@tiptap/extension-link';
 import { Color } from '@tiptap/extension-color';
-import Image from '@tiptap/extension-image';
-import ResizeImage from "tiptap-extension-resize-image";
+import ResizeImage, { ImageResize } from "tiptap-extension-resize-image";
 import Youtube from '@tiptap/extension-youtube';
 import Code from '@tiptap/extension-code';
 import Blockquote from '@tiptap/extension-blockquote';
@@ -54,6 +53,9 @@ export const TipTap = ({ editorString, onFocus, courses }: TipTapProps) => {
       Paragraph,
       Text,
       Gapcursor,
+      ImageResize.configure({
+      inline: true,
+    }),
       Table.configure({
         resizable: true,
       }),
@@ -72,9 +74,6 @@ export const TipTap = ({ editorString, onFocus, courses }: TipTapProps) => {
         HTMLAttributes: {
           class: 'youtube-video draggable-video',
         },
-      }),
-      Image.configure({
-        inline: true,
       }),
       Highlight.configure({ multicolor: true }),
       TextAlign.configure({
