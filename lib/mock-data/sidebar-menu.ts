@@ -24,16 +24,16 @@ export const sidebarItems: SidebarItem[] = [
     icon: Home,
   },
   {
-    title: "Inbox",
+    title: "Editor",
     icon: Inbox,
     children: [
-      { title: "All Messages", url: "/inbox" },
-      { title: "Unread", url: "/inbox/unread" },
+      { title: "Tip Tap", url: "/editor/tip-tap" },
+      { title: "Block Note", url: "/editor/block-note" },
     ],
   },
   {
-    title: "Calendar",
-    url: "/calendar",
+    title: "story",
+    url: "/story",
     icon: Calendar,
   },
   {

@@ -117,6 +117,8 @@ export function AppSidebar() {
                                   <SidebarMenuSubButton
                                     asChild
                                     isActive={isActive}
+                                    className={`${isActive ? "text-warning hover:bg-warning/60 hover:text-secondary-foreground" : "hover:bg-warning/60"
+                                      }`}
                                   >
                                     <a href={child.url}>{child.title}</a>
                                   </SidebarMenuSubButton>
