@@ -1,0 +1,36 @@
+Expected Response : 
+
+URL : /api/menu/
+
+1 to many between menu and menu 
+
+Response : 
+
+[
+  {
+    title: "Home",
+    url: "/",
+    icon: Home,
+  },
+  {
+    title: "Editor",
+    icon: Inbox,
+    children: [
+      { title: "Tip Tap", url: "/editor/tip-tap" },
+      { title: "Block Note", url: "/editor/block-note" },
+    ],
+  },
+  {
+    title: "story",
+    url: "/story",
+    icon: Calendar,
+  },
+  {
+    title: "Settings",
+    icon: Settings,
+    children: [
+      { title: "Profile", url: "/settings/profile" },
+      { title: "Security", url: "/settings/security" },
+    ],
+  },
+]
