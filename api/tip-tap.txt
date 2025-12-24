@@ -1,23 +1,17 @@
 /api/tip-tap/
-     foreign key Content 
-
-foreign key : content [NEw entitiy ]
-            only one field : josnfield name : conent 
 
 
-[
-    <content>,
-    <josnfield - 
-    content>
-    
-]
+
+Entiyi TiptTap 
+    content : JsonField
+
+
 
 --- -
-Next Step Real Time Indexing. 
-/api/tip-tap/<id>.  GET
 
 
-[
+{
+  data:[
     {
       type: "heading",
       attrs: {
@@ -69,18 +63,12 @@ Next Step Real Time Indexing.
       ],
     },
   ]
+}
 
 
 
   /api/tip-tap/<id>.  UPDATE 
 
-    [
-        <json1>
-
-        <json2>
-
-    ]
-
-
+   
     Previous one Delete 
     New Create 
