@@ -3,8 +3,8 @@
 import {
   Home,
   Inbox,
-  Calendar,
   Settings,
+  NotebookPen,
 } from "lucide-react"
 
 export type SidebarItem = {
@@ -34,7 +34,7 @@ export const sidebarItems: SidebarItem[] = [
   {
     title: "story",
     url: "/story",
-    icon: Calendar,
+    icon: NotebookPen,
   },
   {
     title: "Settings",
