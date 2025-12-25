@@ -1,2 +1,1 @@
-export * from "./drag-sort-game";
 export * from "./hot-spot-notice-game";

@@ -1,5 +1,4 @@
 "use client";
-
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -37,6 +36,11 @@ export const DragSortGame = ({
     isAlreadyDropped,
   } = useDragMutation<DragItem>();
 
+  const totalItems = items.length;
+  const droppedCount = Object.values(bucketItems)
+    .reduce((acc, curr) => acc + curr.length, 0);
+  const isCompleted = droppedCount === totalItems;
+
   return (
     <div className="space-y-6">
       <div className="text-center space-y-2">
@@ -45,6 +49,7 @@ export const DragSortGame = ({
           <Paragraph className="text-muted-foreground">{description}</Paragraph>
         )}
       </div>
+
       <div className="flex flex-wrap justify-center gap-3">
         {items.map((item) => (
           <Badge
@@ -75,7 +80,11 @@ export const DragSortGame = ({
 
             <div className="flex flex-wrap gap-2 justify-center">
               {(bucketItems[bucket.accept] || []).map((item) => (
-                <Badge key={item.label} variant="secondary" className="dark:bg-secondary-foreground dark:text-secondary">
+                <Badge
+                  key={item.label}
+                  variant="secondary"
+                  className="dark:bg-secondary-foreground dark:text-secondary"
+                >
                   {item.label}
                 </Badge>
               ))}
@@ -83,6 +92,14 @@ export const DragSortGame = ({
           </Card>
         ))}
       </div>
+
+      {isCompleted && (
+        <div className="text-center pt-4">
+          <Paragraph className="text-success font-medium">
+            🎉 Great job! You have correctly sorted all items.
+          </Paragraph>
+        </div>
+      )}
     </div>
   );
 };

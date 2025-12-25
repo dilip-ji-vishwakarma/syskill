@@ -28,10 +28,23 @@ const meta: Meta<typeof DragSortGame> = {
     layout: "centered",
   },
   argTypes: {
-    title: { control: "text" },
-    description: { control: "text" },
-    items: { control: "object" },
-    buckets: { control: "object" },
+    title: {
+      control: "text",
+      description: "Game title",
+    },
+    description: {
+      control: "text",
+      description: "Short instruction shown below the title",
+    },
+
+    items: {
+      control: false,
+      description: "Draggable items (JSON driven)",
+    },
+    buckets: {
+      control: false,
+      description: "Drop zones (JSON driven)",
+    },
   },
 };
 

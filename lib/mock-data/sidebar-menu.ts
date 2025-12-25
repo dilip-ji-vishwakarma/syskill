@@ -38,9 +38,12 @@ export const sidebarItems: SidebarItem[] = [
     icon: NotebookPen,
   },
   {
-    title: "Game",
-    url: "/game",
+    title: "Games",
     icon: GamepadDirectional,
+    children: [
+      { title: "Drag Short", url: "/games/drag-short" },
+      { title: "Hot Spot Notice", url: "/games/hot-spot-notice" },
+    ],
   },
   {
     title: "Settings",
