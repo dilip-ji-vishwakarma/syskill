@@ -12,3 +12,4 @@ export * from "./navigation";
 export * from "./sidebar";
 export * from "./data-table";  
 export * from "./form-fields";
+export * from "./games";

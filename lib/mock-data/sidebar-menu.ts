@@ -5,6 +5,7 @@ import {
   Inbox,
   Settings,
   NotebookPen,
+  GamepadDirectional,
 } from "lucide-react"
 
 export type SidebarItem = {
@@ -32,9 +33,14 @@ export const sidebarItems: SidebarItem[] = [
     ],
   },
   {
-    title: "story",
+    title: "Story",
     url: "/story",
     icon: NotebookPen,
+  },
+  {
+    title: "Game",
+    url: "/game",
+    icon: GamepadDirectional,
   },
   {
     title: "Settings",
