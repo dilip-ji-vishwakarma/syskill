@@ -6,6 +6,7 @@ import {
   Settings,
   NotebookPen,
   GamepadDirectional,
+  TableOfContents,
 } from "lucide-react"
 
 export type SidebarItem = {
@@ -44,6 +45,11 @@ export const sidebarItems: SidebarItem[] = [
       { title: "Drag Short", url: "/games/drag-short" },
       { title: "Hot Spot Notice", url: "/games/hot-spot-notice" },
     ],
+  },
+  {
+    title: "Lession",
+    icon: TableOfContents,
+    url: "/lession",
   },
   {
     title: "Settings",
