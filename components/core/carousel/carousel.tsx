@@ -4,6 +4,7 @@
 import { useRef, useEffect } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
+import { Box } from "../box";
 
 type SplideRef = {
   splide: any;
@@ -33,7 +34,7 @@ export function Carousel({ slides }: CarouselProps) {
   }, []);
 
   return (
-    <div className="max-w-5xl mx-auto">
+    <Box className="max-w-5xl mx-auto">
       <Splide
         ref={mainRef}
         options={{
@@ -48,9 +49,9 @@ export function Carousel({ slides }: CarouselProps) {
       >
         {slides.map((slide) => (
           <SplideSlide key={slide.id}>
-            <div className="w-full">
+            <Box className="w-full">
               {slide.content}
-            </div>
+            </Box>
           </SplideSlide>
         ))}
       </Splide>
@@ -77,16 +78,16 @@ export function Carousel({ slides }: CarouselProps) {
       >
         {slides.map((slide) => (
           <SplideSlide key={`thumb-${slide.id}`}>
-            <div className="w-full cursor-pointer overflow-hidden rounded border hover:ring-2 ring-black transition">
+            <Box className="w-full cursor-pointer overflow-hidden rounded border hover:ring-2 ring-black transition">
               {slide.thumb ?? (
-                <div className="flex items-center justify-center text-sm font-semibold bg-muted">
+                <Box className="flex items-center justify-center text-sm font-semibold bg-muted">
                   Slide {slide.id}
-                </div>
+                </Box>
               )}
-            </div>
+            </Box>
           </SplideSlide>
         ))}
       </Splide>
-    </div>
+    </Box>
   );
 }

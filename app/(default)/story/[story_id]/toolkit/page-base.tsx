@@ -2,7 +2,7 @@
 
 import { useForm, useFieldArray } from "react-hook-form";
 import type { FieldValues, Control } from "react-hook-form";
-import { InputField, InputFile, TextareaField, Title } from "@/components/core";
+import { Box, InputField, InputFile, TextareaField, Title } from "@/components/core";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FlipBooks } from "@/components/core/flip-book/flip-book";
@@ -73,10 +73,10 @@ export const PageBase = () => {
   };
 
   return (
-    <div className="min-h-screen p-6">
-      <div className="max-w-5xl mx-auto bg-white border border-gray-200 rounded-md shadow-sm p-6">
+    <Box className="min-h-screen p-6">
+      <Box className="max-w-5xl mx-auto bg-white border border-gray-200 rounded-md shadow-sm p-6">
         <Tabs defaultValue="edit">
-          <div className="flex items-center justify-between mb-6">
+          <Box className="flex items-center justify-between mb-6">
             <Title as="h2" className="text-xl font-semibold">
               Edit StoryBook
             </Title>
@@ -85,7 +85,7 @@ export const PageBase = () => {
               <TabsTrigger value="edit">Edit</TabsTrigger>
               <TabsTrigger value="preview">Preview</TabsTrigger>
             </TabsList>
-          </div>
+          </Box>
 
           <TabsContent value="edit">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
@@ -115,11 +115,11 @@ export const PageBase = () => {
                 <Title as="h4">Story Pages</Title>
 
                 {fields.map((field, index) => (
-                  <div
+                  <Box
                     key={field.id}
                     className="border rounded-md p-5 bg-white space-y-4"
                   >
-                    <div className="flex justify-between items-center">
+                    <Box className="flex justify-between items-center">
                       <span className="text-sm font-semibold bg-gray-100 px-3 py-1 rounded">
                         Page {index + 1}
                       </span>
@@ -132,7 +132,7 @@ export const PageBase = () => {
                       >
                         Remove
                       </Button>
-                    </div>
+                    </Box>
 
                     <InputFile
                       name={`pages.${index}.image`}
@@ -146,7 +146,7 @@ export const PageBase = () => {
                       label="Page Text"
                       placeholder="Write the story for this page…"
                     />
-                  </div>
+                  </Box>
                 ))}
 
                 <Button
@@ -173,7 +173,7 @@ export const PageBase = () => {
                 />
               </section>
 
-              <div className="border-t pt-4 flex justify-end">
+              <Box className="border-t pt-4 flex justify-end">
                 <Button
                   type="submit"
                   disabled={isSubmitting}
@@ -181,7 +181,7 @@ export const PageBase = () => {
                 >
                   Save StoryBook
                 </Button>
-              </div>
+              </Box>
             </form>
           </TabsContent>
 
@@ -189,7 +189,7 @@ export const PageBase = () => {
             <FlipBooks />
           </TabsContent>
         </Tabs>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };

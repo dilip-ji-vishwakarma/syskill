@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Minus, Plus } from "lucide-react";
 import { useCounterMutations } from "./toolkit/hook/use-counter-mutations";
+import { Box } from "../box";
 
 type CounterProps = {
   initialValue?: number;
@@ -42,7 +43,7 @@ export function Counter({
   });
 
   return (
-    <div
+    <Box
       className={cn(
         "inline-flex items-center gap-4 rounded-full bg-background px-6 py-2",
         className
@@ -73,6 +74,6 @@ export function Counter({
       >
         <Plus className="h-4 w-4" />
       </Button>
-    </div>
+    </Box>
   );
 }

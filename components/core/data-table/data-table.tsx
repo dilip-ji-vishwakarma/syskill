@@ -15,6 +15,7 @@ import {
 import { SquarePen, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Box } from "../box";
 
 type DataTableProps = {
   caption?: string;
@@ -39,7 +40,7 @@ export const DataTable = ({ caption, data, onDelete }: DataTableProps) => {
   };
 
   return (
-    <div className="rounded-lg border bg-card">
+    <Box className="rounded-lg border bg-card">
       <Table>
         {caption && (
           <TableCaption className="mt-4 text-sm text-muted-foreground">
@@ -100,7 +101,7 @@ export const DataTable = ({ caption, data, onDelete }: DataTableProps) => {
                 })}
 
                 <TableCell className="py-4 text-right">
-                  <div className="inline-flex items-center gap-2">
+                  <Box className="inline-flex items-center gap-2">
                     <Button
                       asChild
                       variant="outline"
@@ -125,13 +126,13 @@ export const DataTable = ({ caption, data, onDelete }: DataTableProps) => {
                         <Trash2 size={16} />
                       )}
                     </Button>
-                  </div>
+                  </Box>
                 </TableCell>
               </TableRow>
             ))
           )}
         </TableBody>
       </Table>
-    </div>
+    </Box>
   );
 };

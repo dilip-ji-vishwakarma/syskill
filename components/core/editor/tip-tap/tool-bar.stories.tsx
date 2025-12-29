@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { EditorProvider } from "./editor-context";
 import { Toolbar } from "./tool-bar";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Box } from "../../box";
 
 const meta: Meta<typeof Toolbar> = {
   title: "Editor/Toolbar",
@@ -10,9 +11,9 @@ const meta: Meta<typeof Toolbar> = {
     (Story) => (
       <EditorProvider>
         <TooltipProvider>
-          <div className="p-4 bg-white">
+          <Box className="p-4 bg-white">
             <Story />
-          </div>
+          </Box>
         </TooltipProvider>
       </EditorProvider>
     ),

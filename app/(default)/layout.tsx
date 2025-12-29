@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/core/sidebar";
-import { TopBar } from "@/components/core";
+import { Box, TopBar } from "@/components/core";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,15 +25,15 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SidebarProvider>
-            <div className="flex min-h-screen w-full">
+            <Box className="flex min-h-screen w-full">
             <AppSidebar />
             <main className="flex-1 rounded-xl bg-secondary-foreground dark:bg-secondary">
               <TopBar />
-              <div className="md:ml-5 bg-secondary-foreground dark:bg-secondary mt-[80px] md:mr-5 my-5">
+              <Box className="md:ml-5 bg-secondary-foreground dark:bg-secondary md:mt-[80px] md:mr-5 my-5">
               {children}
-              </div>
+              </Box>
             </main>
-            </div>
+            </Box>
           </SidebarProvider>
         </ThemeProvider>
       </body>

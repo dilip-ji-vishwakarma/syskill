@@ -1,5 +1,7 @@
+import { Box } from '@/components/core';
 import { Carousel } from '@/components/core/carousel'
 import { BigQuestion, LessonHeader } from '@/components/core/lession'
+import { SoundCard } from '@/components/core/lession/sound-card';
 import Image from 'next/image';
 
 const Page = () => {
@@ -26,7 +28,11 @@ const Page = () => {
     },
     {
       id: 5,
-      content: <LessonHeader />,
+      content:  <SoundCard
+        title="How does it sound?"
+        imageSrc="/images/lession/how-does-it-sound.jpg"
+        soundSrc="/audio/harmonium.mp3"
+      />,
       thumb: (<Image width={140} height={140} alt='' src={"/images/lession/how-does-it-sound.jpg"} />),
     },
     {
@@ -46,9 +52,9 @@ const Page = () => {
     },
   ];
   return (
-    <div>
+    <Box>
       <Carousel slides={slides} />
-    </div>
+    </Box>
   )
 }
 

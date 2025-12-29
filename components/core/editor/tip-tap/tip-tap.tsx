@@ -24,6 +24,7 @@ import Gapcursor from '@tiptap/extension-gapcursor'
 import { useEditorContext } from "./editor-context";
 import { Table } from "@tiptap/extension-table";
 import { TextStyle } from "@tiptap/extension-text-style";
+import { Box } from "../../box";
 
 
 type TipTapProps = {
@@ -101,14 +102,14 @@ export const TipTap = ({ editorString, onFocus, courses }: TipTapProps) => {
   });
 
   return (
-    <div className="mt-5 mb-20">
-      <div className="editor-container w-full dark:text-secondary bg-white border mt-3 pb-[150px] border-[#c7c7c7]" onClick={() => { setCurrentEditor(editor); }}>
+    <Box className="mt-5 mb-20">
+      <Box className="editor-container w-full dark:text-secondary bg-white border mt-3 pb-[150px] border-[#c7c7c7]" onClick={() => { setCurrentEditor(editor); }}>
         <EditorContent
           editor={editor}
           className="minimal-tiptap-editor lg:overflow-auto md:p-10 p-6 border-destructive focus-within:border-destructive lg:h-[100vh]"
           placeholder="Type your description here"
         />
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };

@@ -1,4 +1,4 @@
-import { HotspotNoticeGame } from "@/components/core";
+import { Box, HotspotNoticeGame } from "@/components/core";
 
 
 const data = {
@@ -16,7 +16,7 @@ const data = {
 
 export default function Page() {
   return (
-    <div className="max-w-5xl mx-auto p-6">
+    <Box className="max-w-5xl mx-auto p-6">
       <HotspotNoticeGame
         title="Game 2: Who Will Notice?"
         description="Tap a circle in the picture."
@@ -24,6 +24,6 @@ export default function Page() {
         hotspots={data.hotspots}
         feedbackText={data.feedbackText}
       />
-    </div>
+    </Box>
   );
 }

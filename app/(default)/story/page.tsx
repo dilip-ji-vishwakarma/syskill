@@ -1,4 +1,4 @@
-import { DataTable } from '@/components/core'
+import { Box, DataTable } from '@/components/core'
 
 const tableJson = {
   data: [
@@ -17,9 +17,9 @@ const tableJson = {
 
 const Page = () => {
   return (
-    <div>
+    <Box>
        <DataTable {...tableJson} />
-    </div>
+    </Box>
   )
 }
 

@@ -1,4 +1,5 @@
 import {
+  Box,
   Counter,
   Expression,
   ExpressionCard,
@@ -42,7 +43,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="container mx-auto px-4 space-y-4 my-5">
+    <Box className="container mx-auto px-4 space-y-4 my-5">
       <PageTitle
         title="Algebraic Expressions"
         titleClassName="text-xl md:text-2xl lg:text-3xl"
@@ -55,7 +56,7 @@ export default function Home() {
         In math, we call this <strong>{`"Combining Like Terms".`}</strong>
       </Paragraph>
       <VisualCard>
-        <div className="md:flex items-start justify-center md:gap-28 mb-8 text-center md:space-y-0 space-y-5">
+        <Box className="md:flex items-start justify-center md:gap-28 mb-8 text-center md:space-y-0 space-y-5">
           <VariableCard
             icon={<span className="text-[56px] mb-3">🍎</span>}
             title={"Variable 'a' (Apples)"}
@@ -68,7 +69,7 @@ export default function Home() {
           >
             <Counter initialValue={2} min={0} max={10} />
           </VariableCard>
-        </div>
+        </Box>
         <ExpressionCard className="my-10">
           <Title
             as="h4"
@@ -93,11 +94,11 @@ export default function Home() {
         </ExpressionCard>
       </VisualCard>
 
-      <div className="space-y-6">
+      <Box className="space-y-6">
         {questions.map((q) => (
           <QuestionCard key={q.id} question={q.question} options={q.options} />
         ))}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
