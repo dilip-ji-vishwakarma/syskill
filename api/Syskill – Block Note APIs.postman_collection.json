@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "4f32c546-501a-4a68-bf6f-9d0ec9b5447e",
+		"name": "Syskill – Block Note APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50398455",
+		"_collection_link": "https://deepti-sharma695-5480864.postman.co/workspace/Deepti-Sharma's-Workspace~53c5412b-d685-4a3f-8f95-45fa3f54355c/collection/50398455-4f32c546-501a-4a68-bf6f-9d0ec9b5447e?action=share&source=collection_link&creator=50398455"
+	},
+	"item": [
+		{
+			"name": "Block Note",
+			"item": [
+				{
+					"name": "GET Block Note List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}{{api}}/block_note/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"block_note",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Block Note By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}{{api}}/block_note/{{block_note_id}}/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"block_note",
+								"{{block_note_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Block Note",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Block Note created\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"if (res.id) {\r",
+									"    pm.environment.set(\"block_note_id\", res.id);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"My First Block Note\",\r\n  \"content\": {\r\n    \"type\": \"doc\",\r\n    \"content\": [\r\n      {\r\n        \"type\": \"paragraph\",\r\n        \"content\": [\r\n          {\r\n            \"type\": \"text\",\r\n            \"text\": \"Hello from Block Note editor!\"\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}{{api}}/block_note/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"block_note",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Update Block Note",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"My First Block Note (Updated)\",\r\n  \"content\": {\r\n    \"type\": \"doc\",\r\n    \"content\": [\r\n      {\r\n        \"type\": \"heading\",\r\n        \"attrs\": { \"level\": 2 },\r\n        \"content\": [\r\n          {\r\n            \"type\": \"text\",\r\n            \"text\": \"Updated Block Note Content\"\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}{{api}}/block_note/{{block_note_id}}/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"block_note",
+								"{{block_note_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Block Note",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}{{api}}/block_note/{{block_note_id}}/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"block_note",
+								"{{block_note_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
