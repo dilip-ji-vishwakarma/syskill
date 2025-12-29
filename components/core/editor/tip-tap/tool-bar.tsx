@@ -12,6 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { useEditorContext } from "./editor-context";
 import { ToolTip } from "../../tooltip-wrapper";
+import { Box } from "../../box";
 
 
 
@@ -315,8 +316,8 @@ export const Toolbar = () => {
   const inputClass = "w-full border-[#c7c7c7] border p-2 placeholder:text-sm rounded-md";
 
   return (
-    <div className="w-full sticky top-14  z-10">
-      <div className="toolbar flex flex-wrap justify-start md:gap-3 gap-4 md:shrink-0 overflow-x-auto  px-2 py-1.5 bg-background border">
+    <Box className="w-full sticky top-14  z-10">
+      <Box className="toolbar flex flex-wrap justify-start md:gap-3 gap-4 md:shrink-0 overflow-x-auto  px-2 py-1.5 bg-background border">
         <ToolTip title="Undo"><Toggle onClick={handleundo} disabled={!currentEditor?.can().undo()}>
           <Undo2 className="h-4 w-4" />
         </Toggle></ToolTip>
@@ -450,22 +451,22 @@ export const Toolbar = () => {
         <Popover>
           <PopoverTrigger className="hover:bg-[#E7E7E7] h-9 px-2 min-w-9 flex justify-center items-center rounded-md"><ToolTip title="Heading"><Heading className="h-4 w-4" /></ToolTip></PopoverTrigger>
           <PopoverContent className="w-full bg-white">
-            <div className="gap-3 flex">
+            <Box className="gap-3 flex">
               <Toggle onClick={() => currentEditor?.chain().focus().toggleHeading({ level: 1 }).run()}  ><Heading1 className="h-4 w-4" /></Toggle>
               <Toggle onClick={() => currentEditor?.chain().focus().toggleHeading({ level: 2 }).run()}  ><Heading2 className="h-4 w-4" /></Toggle>
               <Toggle onClick={() => currentEditor?.chain().focus().toggleHeading({ level: 3 }).run()}  ><Heading3 className="h-4 w-4" /></Toggle>
               <Toggle onClick={() => currentEditor?.chain().focus().toggleHeading({ level: 4 }).run()}  ><Heading4 className="h-4 w-4" /></Toggle>
               <Toggle onClick={() => currentEditor?.chain().focus().toggleHeading({ level: 5 }).run()}  ><Heading5 className="h-4 w-4" /></Toggle>
               <Toggle onClick={() => currentEditor?.chain().focus().toggleHeading({ level: 6 }).run()}  ><Heading6 className="h-4 w-4" /></Toggle>
-            </div>
+            </Box>
           </PopoverContent>
         </Popover>
 
         <Popover >
           <PopoverTrigger className="hover:bg-[#E7E7E7] h-9 px-2 min-w-9 flex justify-center items-center rounded-md"><ToolTip title="Highlight"><Highlighter className="h-4 w-4" /></ToolTip></PopoverTrigger>
           <PopoverContent className="w-full bg-white">
-            <div className="space-y-3">
-              <div className="gap-3 flex">
+            <Box className="space-y-3">
+              <Box className="gap-3 flex">
                 {['#FF6347', '#FFA500', '#1E90FF', '#3CB371', '#808080', '#6A5ACD', '#EE82EE', '#D3D3D3'].map(color => (
                   <Toggle
                     key={color}
@@ -475,20 +476,20 @@ export const Toolbar = () => {
                     pressed={activeHighlightColor === color}
                   />
                 ))}
-              </div>
-              <div className="flex items-center gap-3">
+              </Box>
+              <Box className="flex items-center gap-3">
                 <label>Unset Highlight</label>
                 <Toggle className="p-0" onClick={() => currentEditor?.chain().focus().unsetHighlight().run()}><PaintBucket className="h-4 w-4" /> </Toggle>
-              </div>
-            </div>
+              </Box>
+            </Box>
           </PopoverContent>
         </Popover>
 
         <Popover>
           <PopoverTrigger className="hover:bg-[#E7E7E7] h-9 px-2 min-w-9 flex justify-center items-center rounded-md"><ToolTip title="Color"><Palette className="h-4 w-4" /></ToolTip></PopoverTrigger>
           <PopoverContent className="w-full bg-white">
-            <div className="space-y-3">
-              <div className="gap-3 flex">
+            <Box className="space-y-3">
+              <Box className="gap-3 flex">
                 <Toggle className="p-0 bg-[#958DF1] min-w-[15px] h-[15px] rounded-none hover:bg-[#958DF1]" onClick={() => currentEditor?.chain().focus().setColor('#958DF1').run()} />
 
                 <Toggle className="p-0 bg-[#F98181] min-w-[15px] h-[15px] rounded-none hover:bg-[#F98181]" onClick={() => currentEditor?.chain().focus().setColor('#F98181').run()} />
@@ -502,8 +503,8 @@ export const Toolbar = () => {
                 <Toggle className="p-0 bg-[#94FADB] min-w-[15px] h-[15px] rounded-none hover:bg-[#94FADB]" onClick={() => currentEditor?.chain().focus().setColor('#94FADB').run()} />
 
                 <Toggle className="p-0 bg-[#B9F18D] min-w-[15px] h-[15px] rounded-none hover:bg-[#B9F18D]" onClick={() => currentEditor?.chain().focus().setColor('#B9F18D').run()} />
-              </div>
-              <div className="flex items-center gap-3">
+              </Box>
+              <Box className="flex items-center gap-3">
                 <label>Insert Color</label>
                 <input
                   type="color"
@@ -511,12 +512,12 @@ export const Toolbar = () => {
                   value={currentEditor?.getAttributes('textStyle').color}
                   data-testid="setColor"
                 />
-              </div>
-              <div className="flex items-center gap-3">
+              </Box>
+              <Box className="flex items-center gap-3">
                 <label>Unset Color</label>
                 <Toggle className="p-0" onClick={() => currentEditor?.chain().focus().unsetColor().run()}><PaintBucket className="h-4 w-4" /> </Toggle>
-              </div>
-            </div>
+              </Box>
+            </Box>
           </PopoverContent>
         </Popover>
 
@@ -553,7 +554,7 @@ export const Toolbar = () => {
         <Popover>
           <PopoverTrigger className="hover:bg-[#E7E7E7] h-9 px-2 min-w-9 flex justify-center items-center rounded-md"><ToolTip title="Video"><Film className="h-4 w-4" /></ToolTip></PopoverTrigger>
           <PopoverContent className="bg-white relative p-2">
-            <div className="space-y-2">
+            <Box className="space-y-2">
               <input
                 type="text"
                 placeholder="YouTube URL"
@@ -561,7 +562,7 @@ export const Toolbar = () => {
                 onChange={(e) => setVideoUrl(e.target.value)}
                 className={inputClass}
               />
-              <div className="flex gap-2 items-center">
+              <Box className="flex gap-2 items-center">
                 <input
                   type="number"
                   placeholder="Width"
@@ -576,13 +577,13 @@ export const Toolbar = () => {
                   onChange={(e) => setHeight(Number(e.target.value))}
                   className={inputClass}
                 />
-              </div>
+              </Box>
               <button onClick={insertYouTubeVideo} className="border cursor-pointer text-md font-medium h-10   px-6 py-2 rounded-md leading-[0px] bg-[#0b57d0] text-white">Add Video</button>
-            </div>
+            </Box>
           </PopoverContent>
         </Popover>
-      </div>
+      </Box>
       {/* <button onClick={addBox}>Add Box</button> */}
-    </div>
+    </Box>
   );
 };

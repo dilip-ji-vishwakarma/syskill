@@ -1,6 +1,7 @@
 // components/editor/block-note.stories.tsx
 import type { Meta, StoryObj } from "@storybook/react";
 import { BlockNote } from "./block-note";
+import { Box } from "../../box";
 
 const meta: Meta<typeof BlockNote> = {
   title: "Editor/BlockNote",
@@ -16,8 +17,8 @@ type Story = StoryObj<typeof BlockNote>;
 
 export const Default: Story = {
   render: () => (
-    <div className="p-6 bg-white">
+    <Box className="p-6 bg-white">
       <BlockNote />
-    </div>
+    </Box>
   ),
 };

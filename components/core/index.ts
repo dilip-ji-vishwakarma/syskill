@@ -13,3 +13,8 @@ export * from "./sidebar";
 export * from "./data-table";  
 export * from "./form-fields";
 export * from "./games";
+export * from "./carousel";
+export * from "./lession";
+export * from "./box";
+export * from "./audio-player";
+export * from "./grid-box";

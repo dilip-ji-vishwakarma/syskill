@@ -1,4 +1,4 @@
-import { DragSortGame } from "@/components/core";
+import { Box, DragSortGame } from "@/components/core";
 
 const data = {
   items: [
@@ -21,14 +21,14 @@ const data = {
 
 const Page = () => {
   return (
-    <div className="max-w-5xl mx-auto p-6">
+    <Box className="max-w-5xl mx-auto p-6">
       <DragSortGame
         title="Game 1: Sense or Sensor?"
         description="Drag each item to the correct group."
         items={data.items}
         buckets={data.buckets}
       />
-    </div>
+    </Box>
   );
 };
 
