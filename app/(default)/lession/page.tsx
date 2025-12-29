@@ -1,6 +1,6 @@
 import { Box } from '@/components/core';
 import { Carousel } from '@/components/core/carousel'
-import { BigQuestion, LessonHeader } from '@/components/core/lession'
+import { BigQuestion, HearPromptCard, LessonHeader } from '@/components/core/lession'
 import { SoundCard } from '@/components/core/lession/sound-card';
 import Image from 'next/image';
 
@@ -37,7 +37,12 @@ const Page = () => {
     },
     {
       id: 6,
-      content: <LessonHeader />,
+      content: <HearPromptCard
+  title="Tell me what you hear"
+  imageSrc="/images/lession/boy.png"
+  soundSrc="/audio/harmonium.mp3"
+/>
+,
       thumb: (<Image width={140} height={140} alt='' src={"/images/lession/Human senses and machine sensors-Grade 1.jpg"} />),
     },
     {
