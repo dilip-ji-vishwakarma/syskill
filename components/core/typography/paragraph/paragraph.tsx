@@ -7,7 +7,7 @@ export function Paragraph({
   return (
     <p
       className={cn(
-        "leading-7 text-foreground [&:not(:first-child)]:mt-6",
+        "leading-7 text-foreground",
         className
       )}
       {...props}

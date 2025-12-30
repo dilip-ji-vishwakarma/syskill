@@ -13,6 +13,7 @@ export const HearPromptCard = ({
   title,
   imageSrc,
   soundSrc,
+  bgColor = "#FFD257",
 }: GenericObjectType) => {
   const { control } = useForm();
   return (
@@ -20,7 +21,7 @@ export const HearPromptCard = ({
       <GridBox className="grid-cols-1 border-[3px] border-black">
         <GridBox.GridItem className="p-3">
           <Box className="flex">
-            <Box className="w-[280px] bg-[#FFD257] border-2 border-black flex flex-col items-center justify-between">
+            <Box className={`w-[280px] bg-[${bgColor}] border-2 ${bgColor ? "border-none" : "border-black"} flex flex-col items-center justify-between`}>
               <Box className="bg-white border-4 border-black rounded-full px-6 py-3 text-xl font-bold mt-4">
                 HEAR
               </Box>
