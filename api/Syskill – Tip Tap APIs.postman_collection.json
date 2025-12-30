@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "deeb70f2-1a31-4c4d-a130-c9d79247620f",
+		"name": "Syskill – Tip Tap APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50398455",
+		"_collection_link": "https://deepti-sharma695-5480864.postman.co/workspace/Deepti-Sharma's-Workspace~53c5412b-d685-4a3f-8f95-45fa3f54355c/collection/50398455-deeb70f2-1a31-4c4d-a130-c9d79247620f?action=share&source=collection_link&creator=50398455"
+	},
+	"item": [
+		{
+			"name": "Tip Tap",
+			"item": [
+				{
+					"name": "GET Tip Tap List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}{{api}}/tip_tap/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"tip_tap",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Tip Tap By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}{{api}}/tip_tap/{{tip_tap_id}}/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"tip_tap",
+								"{{tip_tap_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Tip Tap",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Tip Tap created\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"if (res.id) {\r",
+									"    pm.environment.set(\"tip_tap_id\", res.id);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Welcome Note\",\r\n  \"content\": {\r\n    \"type\": \"doc\",\r\n    \"content\": [\r\n      {\r\n        \"type\": \"paragraph\",\r\n        \"content\": [\r\n          {\r\n            \"type\": \"text\",\r\n            \"text\": \"Hello from TipTap editor!\"\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}{{api}}/tip_tap/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"tip_tap",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Update Tip Tap",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Welcome Note (Updated)\",\r\n  \"content\": {\r\n    \"type\": \"doc\",\r\n    \"content\": [\r\n      {\r\n        \"type\": \"heading\",\r\n        \"attrs\": { \"level\": 2 },\r\n        \"content\": [\r\n          { \"type\": \"text\", \"text\": \"Updated TipTap Content\" }\r\n        ]\r\n      }\r\n    ]\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}{{api}}/tip_tap/{{tip_tap_id}}/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"tip_tap",
+								"{{tip_tap_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Tip Tap",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}{{api}}/tip_tap/{{tip_tap_id}}/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"tip_tap",
+								"{{tip_tap_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
