@@ -1,0 +1,332 @@
+{
+	"info": {
+		"_postman_id": "8e990bdf-4ffc-4db5-8191-415ad5882408",
+		"name": "Syskill – Flip Book Page APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50398455",
+		"_collection_link": "https://deepti-sharma695-5480864.postman.co/workspace/Deepti-Sharma's-Workspace~53c5412b-d685-4a3f-8f95-45fa3f54355c/collection/50398455-8e990bdf-4ffc-4db5-8191-415ad5882408?action=share&source=collection_link&creator=50398455"
+	},
+	"item": [
+		{
+			"name": "Flip Book Page",
+			"item": [
+				{
+					"name": "GET Flip Book Page List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/flip_book_page/?story_id=3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"flip_book_page",
+								""
+							],
+							"query": [
+								{
+									"key": "story_id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Flip Book Page By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}{{api}}/flip_book_page/{{flip_page_id}}/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"flip_book_page",
+								"{{flip_page_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Flip Book Page",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Flip book page created\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"if (res.id) {\r",
+									"    pm.environment.set(\"flip_page_id\", res.id);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"story_id\": 1,\r\n  \"image\": \"/images/page-1.png\",\r\n  \"text\": \"Once upon a sunny morning...\",\r\n  \"is_cover\": false,\r\n  \"is_end\": false,\r\n  \"page_order\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}{{api}}/flip_book_page/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"flip_book_page",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Cover Page",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Flip book page created\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"if (res.id) {\r",
+									"    pm.environment.set(\"flip_page_id\", res.id);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"story_id\": 1,\r\n  \"image\": \"/images/cover.png\",\r\n  \"text\": \"Riya and Robo\",\r\n  \"is_cover\": true,\r\n  \"page_order\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}{{api}}/flip_book_page/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"flip_book_page",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create End Page",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Flip book page created\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"if (res.id) {\r",
+									"    pm.environment.set(\"flip_page_id\", res.id);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"story_id\": 1,\r\n  \"image\": \"/images/end.png\",\r\n  \"text\": \"The End\",\r\n  \"is_end\": true,\r\n  \"page_order\": 999\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}{{api}}/flip_book_page/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"flip_book_page",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Update Flip Book Page",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"text\": \"Updated page text\",\r\n  \"page_order\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}{{api}}/flip_book_page/{{flip_page_id}}/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"flip_book_page",
+								"{{flip_page_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Flip Book Page",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}{{api}}/flip_book_page/{{flip_page_id}}/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"flip_book_page",
+								"{{flip_page_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Flip Book Pages By Story",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}{{api}}/flip_book_page/?story_id={{story_id}}",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"flip_book_page",
+								""
+							],
+							"query": [
+								{
+									"key": "story_id",
+									"value": "{{story_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files",
+									"type": "file",
+									"src": "/D:/project/nishify/images/cover.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/doc/\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"doc",
+								"\n"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "filters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}{{api}}/flip_book_page/?story_id={{story_id}}",
+					"host": [
+						"{{base_url}}{{api}}"
+					],
+					"path": [
+						"flip_book_page",
+						""
+					],
+					"query": [
+						{
+							"key": "story_id",
+							"value": "{{story_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

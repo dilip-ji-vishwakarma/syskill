@@ -1,0 +1,517 @@
+{
+	"info": {
+		"_postman_id": "9b7cccb4-8442-4130-9d28-18ba8016edd4",
+		"name": "Syskill – Game APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50398455",
+		"_collection_link": "https://deepti-sharma695-5480864.postman.co/workspace/Deepti-Sharma's-Workspace~53c5412b-d685-4a3f-8f95-45fa3f54355c/collection/50398455-9b7cccb4-8442-4130-9d28-18ba8016edd4?action=share&source=collection_link&creator=50398455"
+	},
+	"item": [
+		{
+			"name": "Game",
+			"item": [
+				{
+					"name": "GET Game List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}{{api}}/game/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"game",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Game By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}{{api}}/game/?id={{game_id}}",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"game",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{game_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Game",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response.json();\r",
+									"pm.environment.set(\"game_id\", res.id);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Who will Notice?\",\r\n  \"game_type\": \"hotspot\",\r\n  \"grade\": 7,\r\n  \"chapter\": 3\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}{{api}}/game/\n",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"game",
+								"\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Update Game",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Who Will Notice? (Updated)\",\r\n  \"game_type\": \"hotspot\",\r\n  \"grade\": 7,\r\n  \"chapter\": 3\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/game/{{game_id}}/\n",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"game",
+								"{{game_id}}",
+								"\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Game",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/game/10/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"game",
+								"10",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "game list by number",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/game/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"game",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Game by ID (FILTER)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/game/?id=3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"game",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Game Question",
+			"item": [
+				{
+					"name": "GET Questions By Game",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/game_question/?game_id={{game_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"game_question",
+								""
+							],
+							"query": [
+								{
+									"key": "game_id",
+									"value": "{{game_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Question",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response.json();\r",
+									"pm.environment.set(\"question_id\", res.id);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"game_id\": {{game_id}},\r\n  \"question\": \"Who is noticing the fish?\",\r\n  \"image\": \"/images/scene.png\",\r\n  \"question_order\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/game_question/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"game_question",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Update Question",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"question\": \"Who notices the fish first?\",\r\n  \"question_order\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/game_question/{{question_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"game_question",
+								"{{question_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Question",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Game Option",
+			"item": [
+				{
+					"name": "GET Options By Question",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/game_option/?question_id={{question_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"game_option",
+								""
+							],
+							"query": [
+								{
+									"key": "question_id",
+									"value": "{{question_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Option (Human)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response.json();\r",
+									"pm.environment.set(\"option_human_id\", res.id);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"question_id\": {{question_id}},\r\n  \"label\": \"Eye\",\r\n  \"group\": \"human\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/game_option/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"game_option",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Option",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Option (Robot)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response.json();\r",
+									"pm.environment.set(\"option_machine_id\", res.id);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"question_id\": {{question_id}},\r\n  \"label\": \"Camera\",\r\n  \"group\": \"machine\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/game_option/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"game_option",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Game Answer",
+			"item": [
+				{
+					"name": "POST Submit Answer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response.json();\r",
+									"pm.environment.set(\"answer_id\", res.id);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"question_id\": {{question_id}},\r\n  \"answer_data\": [\r\n    { \"x\": 120, \"y\": 300, \"radius\": 40 }\r\n  ]\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/game_answer/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"game_answer",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Answers By Question",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/game_answer/?question_id={{question_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"game_answer",
+								""
+							],
+							"query": [
+								{
+									"key": "question_id",
+									"value": "{{question_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

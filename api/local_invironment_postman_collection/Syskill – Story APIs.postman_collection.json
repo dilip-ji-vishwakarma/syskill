@@ -1,0 +1,195 @@
+{
+	"info": {
+		"_postman_id": "905aaa25-e6a8-4689-a499-2ae5634d102f",
+		"name": "Syskill – Story APIs",
+		"description": "CRUD APIs for Syskill Story (Book List)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50398455",
+		"_collection_link": "https://deepti-sharma695-5480864.postman.co/workspace/Deepti-Sharma's-Workspace~53c5412b-d685-4a3f-8f95-45fa3f54355c/collection/50398455-905aaa25-e6a8-4689-a499-2ae5634d102f?action=share&source=collection_link&creator=50398455"
+	},
+	"item": [
+		{
+			"name": "Story",
+			"item": [
+				{
+					"name": "GET Story List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}{{api}}/story/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"story",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Story By ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}{{api}}/story/{{story_id}}/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"story",
+								"{{story_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Story",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Story created\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"if (res.id) {\r",
+									"    pm.environment.set(\"story_id\", res.id);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Story\",\r\n  \"cover_image\": \"/images/new-story-cover.png\",\r\n  \"description\": \"This is a newly created story for testing.\",\r\n  \"is_active\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}{{api}}/story/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"story",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Update Story",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"The Clever Fox (Updated)\",\r\n  \"description\": \"Updated description\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}{{api}}/story/{{story_id}}/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"story",
+								"{{story_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Story",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}{{api}}/story/{{story_id}}/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"story",
+								"{{story_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Monkey Story\",\r\n  \"cover_image\": \"/images/new-story-cover.png\",\r\n  \"description\": \"This is a newly created story for testing.\",\r\n  \"is_active\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}{{api}}/story/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"story",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

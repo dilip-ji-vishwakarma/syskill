@@ -1,0 +1,194 @@
+{
+	"info": {
+		"_postman_id": "3b5185f0-85c7-4e3d-9ea0-8057d0e267cd",
+		"name": "Syskill – Menu APIs",
+		"description": "CRUD APIs for Syskill Menu (Sidebar Navigation)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50398455",
+		"_collection_link": "https://deepti-sharma695-5480864.postman.co/workspace/Deepti-Sharma's-Workspace~53c5412b-d685-4a3f-8f95-45fa3f54355c/collection/50398455-3b5185f0-85c7-4e3d-9ea0-8057d0e267cd?action=share&source=collection_link&creator=50398455"
+	},
+	"item": [
+		{
+			"name": "Menu",
+			"item": [
+				{
+					"name": "GET Menu List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}{{api}}/menu/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"menu",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Menu By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}{{api}}/menu/1/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"menu",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Menu",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response.json();\r",
+									"pm.environment.set(\"menu_id\", res.id);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Reports\",\r\n  \"icon\": \"BarChart\",\r\n  \"order_no\": 9\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}{{api}}/menu/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"menu",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Sub Menu",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Monthly Report\",\r\n  \"url\": \"/reports/monthly\",\r\n  \"parent_id\": {{menu_id}},\r\n  \"order_no\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}{{api}}/menu/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"menu",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Update Menu",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Reports & Analytics\",\r\n  \"order_no\": 10\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}{{api}}/menu/{{menu_id}}/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"menu",
+								"{{menu_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Menu",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}{{api}}/menu/{{menu_id}}/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"menu",
+								"{{menu_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get current valid parent IDs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}{{api}}/menu/",
+							"host": [
+								"{{base_url}}{{api}}"
+							],
+							"path": [
+								"menu",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
