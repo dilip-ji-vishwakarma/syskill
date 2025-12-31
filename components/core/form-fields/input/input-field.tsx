@@ -27,7 +27,7 @@ export const InputField = ({
   defaultValue = "",
 }: InputFieldProps) => {
   return (
-    <>
+    <div>
       {label && <Label htmlFor={name}>{label}</Label>}
       <Controller
         name={name}
@@ -50,6 +50,6 @@ export const InputField = ({
           </>
         )}
       />
-    </>
+    </div>
   );
 };
