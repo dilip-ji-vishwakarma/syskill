@@ -5,7 +5,6 @@ import type { FieldValues, Control } from "react-hook-form";
 import { Box, InputField, InputFile, TextareaField, Title } from "@/components/core";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FlipBooks } from "@/components/core/flip-book/flip-book";
 
 type FormValues = {
   cover: {
@@ -183,10 +182,6 @@ export const PageBase = () => {
                 </Button>
               </Box>
             </form>
-          </TabsContent>
-
-          <TabsContent value="preview">
-            <FlipBooks />
           </TabsContent>
         </Tabs>
       </Box>

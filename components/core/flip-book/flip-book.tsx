@@ -5,7 +5,6 @@
 import HTMLFlipBook from "react-pageflip";
 import { ChevronLeft, ChevronRight, Volume2 } from "lucide-react";
 import { useFlipBookMutation } from "./hook/use-flip-book-mutation";
-import { pages } from "@/lib/mock-data/flip-page";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,40 +13,61 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useState } from "react";
+import { getYoutubeEmbedUrl } from "@/types/types";
 
 const FlipBook = HTMLFlipBook as any;
 
-export const FlipBooks = () => {
+/* ---------------- TYPES ---------------- */
+
+type MediaProps = {
+  url: string;
+  start?: number;
+  end?: number;
+};
+
+type PageItem = {
+  id: number;
+  isStart?: boolean;
+  isCover?: boolean;
+  image?: string;
+  title?: string;
+  description?: string;
+  video?: MediaProps;
+  audio?: MediaProps;
+};
+
+type FlipBooksProps = {
+  pages: PageItem[];
+};
+
+export const FlipBooks = ({ pages }: FlipBooksProps) => {
   const [ytType, setYtType] = useState<"video" | "audio" | null>(null);
-  const [showAudio, setShowAudio] = useState(false);
+
+  const [activeMedia, setActiveMedia] = useState<{
+    type: "video" | "audio";
+    url: string;
+    start?: number;
+    end?: number;
+  } | null>(null);
 
   const {
-    prevPage,
-    nextPage,
-    speak,
-    bookRef,
-    page,
-    cornerLift,
-    isCover,
-    setPage,
-  } = useFlipBookMutation();
+  prevPage,
+  nextPage,
+  speak,
+  bookRef,
+  page,
+  cornerLift,
+  isCover,
+  setPage,
+} = useFlipBookMutation(pages);
 
-  const YOUTUBE_VIDEO_ID = "cd1KiAOTlnI"; // replace later
 
-  const getYoutubeEmbedUrl = (
-    type: "audio" | "video",
-    start = 10,
-    end = 40
-  ) => {
-    return type === "audio"
-      ? `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&start=${start}&end=${end}&controls=1&modestbranding=1`
-      : `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&start=${start}&end=${end}&controls=1&modestbranding=1`;
-  };
+  const currentPage = pages[page] || pages[0];
 
   return (
-    <div className="min-h-screen">
-      <div className="mx-auto max-w-[1100px] items-center justify-between px-4 py-4 md:flex hidden">
-        <div className="items-center gap-3 text-sm text-gray-600 flex">
+    <>
+      <div className="mx-auto max-w-full items-center justify-between px-4 py-4 md:flex hidden">
+        <div className="flex items-center gap-3 text-sm text-gray-600">
           <button onClick={prevPage} className="hover:text-black">
             <ChevronLeft size={18} />
           </button>
@@ -61,16 +81,24 @@ export const FlipBooks = () => {
           </button>
         </div>
 
-        {ytType && (
-          <div className="absolute right-64 top-16 z-50 w-[180px] rounded-xl bg-black shadow-xl overflow-hidden">
+        {activeMedia && ytType === "video" && (
+          <div className="absolute right-64 top-16 z-50 w-[220px] rounded-xl bg-black shadow-xl overflow-hidden">
             <iframe
-              className="w-full h-[100px]"
-              src={getYoutubeEmbedUrl(ytType)}
+              className="w-full h-[130px]"
+              src={getYoutubeEmbedUrl(
+                activeMedia.url,
+                activeMedia.start,
+                activeMedia.end
+              )}
               allow="autoplay; encrypted-media"
               allowFullScreen
             />
+
             <button
-              onClick={() => setYtType(null)}
+              onClick={() => {
+                setActiveMedia(null);
+                setYtType(null);
+              }}
               className="w-full bg-zinc-900 text-white text-xs py-2 hover:bg-zinc-800"
             >
               Close
@@ -78,17 +106,23 @@ export const FlipBooks = () => {
           </div>
         )}
 
-        {showAudio && (
-          <div className="absolute right-64 top-16 z-50 w-[200px] rounded-xl bg-white shadow-xl p-3 space-y-2">
-            <audio
-              src="/audio/story.mp3"
-              controls
-              autoPlay
-              className="w-full"
+        {activeMedia && ytType === "audio" && (
+          <div className="absolute right-64 top-16 z-50 w-[220px] rounded-xl bg-white shadow-xl p-3 space-y-2">
+            <iframe
+              className="w-full h-[60px]"
+              src={getYoutubeEmbedUrl(
+                activeMedia.url,
+                activeMedia.start,
+                activeMedia.end
+              )}
+              allow="autoplay"
             />
 
             <button
-              onClick={() => setShowAudio(false)}
+              onClick={() => {
+                setActiveMedia(null);
+                setYtType(null);
+              }}
               className="w-full rounded-md bg-zinc-900 text-white text-xs py-2 hover:bg-zinc-800"
             >
               Close
@@ -96,35 +130,48 @@ export const FlipBooks = () => {
           </div>
         )}
 
-        <DropdownMenu >
+        <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button
-              className="flex items-center gap-2 rounded-full
-      bg-blue-100 px-4 py-2 text-sm
-      text-blue-700 hover:bg-blue-200"
-            >
+            <button className="flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm text-blue-700 hover:bg-blue-200">
               <Volume2 size={16} />
               Listen
             </button>
           </DropdownMenuTrigger>
 
           <DropdownMenuContent align="end" className="w-52 bg-white">
-            <DropdownMenuItem
-              onClick={() => {
-                setShowAudio(false);
-                speak();
-              }}
-            >
+            <DropdownMenuItem onClick={() => speak()}>
               🔊 Read Aloud
             </DropdownMenuItem>
 
             <DropdownMenuSeparator />
 
-            <DropdownMenuItem onClick={() => setYtType("video")}>
+            <DropdownMenuItem
+              onClick={() => {
+                if (!currentPage?.video) return;
+                setActiveMedia({
+                  type: "video",
+                  url: currentPage.video.url,
+                  start: currentPage.video.start,
+                  end: currentPage.video.end,
+                });
+                setYtType("video");
+              }}
+            >
               ▶️ YouTube Video
             </DropdownMenuItem>
 
-            <DropdownMenuItem onClick={() => setShowAudio(true)}>
+            <DropdownMenuItem
+              onClick={() => {
+                if (!currentPage?.audio) return;
+                setActiveMedia({
+                  type: "audio",
+                  url: currentPage.audio.url,
+                  start: currentPage.audio.start,
+                  end: currentPage.audio.end,
+                });
+                setYtType("audio");
+              }}
+            >
               🎧 Audio
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -132,18 +179,19 @@ export const FlipBooks = () => {
       </div>
       <div className="block md:hidden px-4 pb-10 space-y-8 overflow-y-auto">
         {pages.map((p, i) => (
-          <div key={i} className="rounded-xl bg-white overflow-hidden">
+          <div key={p.id} className="rounded-xl bg-white overflow-hidden">
             <img
               src={p.image}
               alt=""
               className="w-full h-[220px] object-cover"
             />
+
             <div className="p-5 font-serif text-gray-800">
               {p.isCover && (
                 <h1 className="mb-3 text-2xl font-semibold">{p.title}</h1>
               )}
 
-              {!p.isCover && <p className="story-text">{p.text}</p>}
+              {!p.isCover && <p className="story-text">{p.description}</p>}
 
               {!p.isCover && (
                 <div className="mt-4 text-right text-xs text-gray-400">
@@ -163,15 +211,11 @@ export const FlipBooks = () => {
         </div>
 
         <div
-          className={`pointer-events-none absolute
-            bottom-[12px] right-[calc(50%-450px)]
-            h-20 w-20 rounded-bl-full
-            transition-all duration-300 ease-out
-            ${
-              cornerLift
-                ? "translate-x-[-14px] translate-y-[-14px] rotate-[-10deg]"
-                : ""
-            }`}
+          className={`pointer-events-none absolute bottom-[12px] right-[calc(50%-450px)] h-20 w-20 rounded-bl-full transition-all duration-300 ${
+            cornerLift
+              ? "translate-x-[-14px] translate-y-[-14px] rotate-[-10deg]"
+              : ""
+          }`}
           style={{
             background:
               "linear-gradient(135deg, rgba(0,0,0,0.22), transparent 60%)",
@@ -189,7 +233,7 @@ export const FlipBooks = () => {
         >
           {pages.map((p, i) => (
             <div
-              key={i}
+              key={p.id}
               className="relative w-full h-full overflow-hidden rounded-xl bg-white"
             >
               {p.isCover ? (
@@ -222,7 +266,7 @@ export const FlipBooks = () => {
                       backgroundImage: "url('/images/page.png')",
                     }}
                   >
-                    {p.text}
+                    {p.description}
 
                     <span className="absolute bottom-4 right-6 text-sm text-gray-400">
                       {i}
@@ -234,6 +278,6 @@ export const FlipBooks = () => {
           ))}
         </FlipBook>
       </div>
-    </div>
+    </>
   );
 };
