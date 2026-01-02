@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
+import { v4 as uuid } from "uuid";
 
 export async function GET() {
   const data = {
     isEditable: true,
     book: [
       {
-        id: 1,
+        id: uuid(),
         isStart: true,
         isCover: true,
         image: "/images/cover.png",
@@ -23,7 +24,7 @@ export async function GET() {
         },
       },
       {
-        id: 2,
+        id: uuid(),
         isStart: false,
         isCover: false,
         image: "/images/gradient.png",
@@ -41,7 +42,7 @@ export async function GET() {
         },
       },
       {
-        id: 3,
+        id: uuid(),
         isStart: false,
         isCover: false,
         image: "/images/page-1.png",

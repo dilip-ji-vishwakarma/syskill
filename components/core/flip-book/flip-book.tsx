@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
 import HTMLFlipBook from "react-pageflip";
-import { ChevronLeft, ChevronRight, Volume2 } from "lucide-react";
 import { useFlipBookMutation } from "./hook/use-flip-book-mutation";
 import {
   DropdownMenu,
@@ -14,10 +12,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useState } from "react";
 import { getYoutubeEmbedUrl } from "@/types/types";
+import { Arrows } from "./arrows";
+import { Volume2 } from "lucide-react";
+import { MediaType } from "./media-type";
+import { Box } from "../box";
+import { Caption, Title } from "../typography";
+import { Button } from "@/components/ui/button";
 
 const FlipBook = HTMLFlipBook as any;
-
-/* ---------------- TYPES ---------------- */
 
 type MediaProps = {
   url: string;
@@ -26,7 +28,7 @@ type MediaProps = {
 };
 
 type PageItem = {
-  id: number;
+  id: string;
   isStart?: boolean;
   isCover?: boolean;
   image?: string;
@@ -50,92 +52,35 @@ export const FlipBooks = ({ pages }: FlipBooksProps) => {
     end?: number;
   } | null>(null);
 
-  const {
-  prevPage,
-  nextPage,
-  speak,
-  bookRef,
-  page,
-  cornerLift,
-  isCover,
-  setPage,
-} = useFlipBookMutation(pages);
-
+  const { prevPage, nextPage, speak, bookRef, page, isCover, setPage } =
+    useFlipBookMutation(pages);
 
   const currentPage = pages[page] || pages[0];
 
   return (
     <>
-      <div className="mx-auto max-w-full items-center justify-between px-4 py-4 md:flex hidden">
-        <div className="flex items-center gap-3 text-sm text-gray-600">
-          <button onClick={prevPage} className="hover:text-black">
-            <ChevronLeft size={18} />
-          </button>
-
-          <span className="min-w-[80px] text-center font-medium">
-            {isCover ? "Cover" : `${page} / ${pages.length - 1}`}
-          </span>
-
-          <button onClick={nextPage} className="hover:text-black">
-            <ChevronRight size={18} />
-          </button>
-        </div>
-
-        {activeMedia && ytType === "video" && (
-          <div className="absolute right-64 top-16 z-50 w-[220px] rounded-xl bg-black shadow-xl overflow-hidden">
-            <iframe
-              className="w-full h-[130px]"
-              src={getYoutubeEmbedUrl(
-                activeMedia.url,
-                activeMedia.start,
-                activeMedia.end
-              )}
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-            />
-
-            <button
-              onClick={() => {
-                setActiveMedia(null);
-                setYtType(null);
-              }}
-              className="w-full bg-zinc-900 text-white text-xs py-2 hover:bg-zinc-800"
-            >
-              Close
-            </button>
-          </div>
-        )}
-
-        {activeMedia && ytType === "audio" && (
-          <div className="absolute right-64 top-16 z-50 w-[220px] rounded-xl bg-white shadow-xl p-3 space-y-2">
-            <iframe
-              className="w-full h-[60px]"
-              src={getYoutubeEmbedUrl(
-                activeMedia.url,
-                activeMedia.start,
-                activeMedia.end
-              )}
-              allow="autoplay"
-            />
-
-            <button
-              onClick={() => {
-                setActiveMedia(null);
-                setYtType(null);
-              }}
-              className="w-full rounded-md bg-zinc-900 text-white text-xs py-2 hover:bg-zinc-800"
-            >
-              Close
-            </button>
-          </div>
-        )}
+      <Box className="mx-auto max-w-full items-center justify-between px-4 py-4 md:flex hidden">
+        <Arrows
+          isCover={isCover}
+          prevPage={prevPage}
+          nextPage={nextPage}
+          page={page}
+          totalPages={pages.length - 1}
+        />
+        <MediaType
+          activeMedia={activeMedia}
+          ytType={ytType}
+          setActiveMedia={setActiveMedia}
+          setYtType={setYtType}
+          getYoutubeEmbedUrl={getYoutubeEmbedUrl}
+        />
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm text-blue-700 hover:bg-blue-200">
+            <Button className="flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm text-blue-700 hover:bg-blue-200">
               <Volume2 size={16} />
               Listen
-            </button>
+            </Button>
           </DropdownMenuTrigger>
 
           <DropdownMenuContent align="end" className="w-52 bg-white">
@@ -176,53 +121,34 @@ export const FlipBooks = ({ pages }: FlipBooksProps) => {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      </div>
-      <div className="block md:hidden px-4 pb-10 space-y-8 overflow-y-auto">
+      </Box>
+      <Box className="block md:hidden px-4 pb-10 space-y-8 overflow-y-auto">
         {pages.map((p, i) => (
-          <div key={p.id} className="rounded-xl bg-white overflow-hidden">
+          <Box key={p.id} className="rounded-xl bg-white overflow-hidden">
             <img
               src={p.image}
               alt=""
               className="w-full h-[220px] object-cover"
             />
 
-            <div className="p-5 font-serif text-gray-800">
+            <Box className="p-5 font-serif text-gray-800">
               {p.isCover && (
-                <h1 className="mb-3 text-2xl font-semibold">{p.title}</h1>
+                <Title as="h3" className="mb-3 text-2xl font-semibold">{p.title}</Title>
               )}
 
               {!p.isCover && <p className="story-text">{p.description}</p>}
 
               {!p.isCover && (
-                <div className="mt-4 text-right text-xs text-gray-400">
+                <Box className="mt-4 text-right text-xs text-gray-400">
                   Page {i}
-                </div>
+                </Box>
               )}
-            </div>
-          </div>
+            </Box>
+          </Box>
         ))}
-      </div>
+      </Box>
 
-      <div className="relative hidden md:flex justify-center overflow-hidden">
-        <div className="pointer-events-none absolute right-[calc(50%-450px)] top-[12px] h-[300px] w-[14px]">
-          <div className="absolute inset-0 rounded-r-xl bg-white shadow-md" />
-          <div className="absolute right-[-4px] top-1 h-[350px] w-[6px] rounded-r-xl bg-gray-200" />
-          <div className="absolute right-[-8px] top-2 h-[340px] w-[4px] rounded-r-xl bg-gray-300" />
-        </div>
-
-        <div
-          className={`pointer-events-none absolute bottom-[12px] right-[calc(50%-450px)] h-20 w-20 rounded-bl-full transition-all duration-300 ${
-            cornerLift
-              ? "translate-x-[-14px] translate-y-[-14px] rotate-[-10deg]"
-              : ""
-          }`}
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(0,0,0,0.22), transparent 60%)",
-            filter: "blur(1px)",
-          }}
-        />
-
+      <Box className="relative hidden md:flex justify-center overflow-hidden">
         <FlipBook
           ref={bookRef}
           width={900}
@@ -232,35 +158,39 @@ export const FlipBooks = ({ pages }: FlipBooksProps) => {
           className="rounded-xl shadow-2xl bg-white"
         >
           {pages.map((p, i) => (
-            <div
+            <Box
               key={p.id}
               className="relative w-full h-full overflow-hidden rounded-xl bg-white"
             >
               {p.isCover ? (
-                <div className="relative w-1/2 m-auto h-full">
+                <Box className="relative w-1/2 m-auto h-full">
                   <img
                     src={p.image}
+                    width={500}
+                    height={500}
                     alt=""
                     className="w-full h-full object-cover"
                   />
 
-                  <div className="absolute bottom-0 w-full bg-white/70 backdrop-blur-md py-6 text-center">
-                    <h1 className="text-3xl font-serif font-semibold">
+                  <Box className="absolute bottom-0 w-full bg-white/70 backdrop-blur-md py-6 text-center">
+                    <Title as="h3" className="text-3xl font-serif font-semibold">
                       {p.title}
-                    </h1>
-                  </div>
-                </div>
+                    </Title>
+                  </Box>
+                </Box>
               ) : (
-                <div className="flex w-full h-full">
-                  <div className="w-1/2 h-full">
+                <Box className="flex w-full h-full">
+                  <Box className="w-1/2 h-full">
                     <img
                       src={p.image}
+                      width={500}
+                      height={500}
                       alt=""
                       className="w-full h-full object-cover"
                     />
-                  </div>
+                  </Box>
 
-                  <div
+                  <Box
                     className="relative w-1/2 h-full px-12 py-10 story-text bg-cover bg-center shadow-[rgba(0,0,0,0.15)_1.95px_1.95px_2.6px]"
                     style={{
                       backgroundImage: "url('/images/page.png')",
@@ -268,16 +198,16 @@ export const FlipBooks = ({ pages }: FlipBooksProps) => {
                   >
                     {p.description}
 
-                    <span className="absolute bottom-4 right-6 text-sm text-gray-400">
+                    <Caption className="absolute bottom-4 right-6 text-sm text-gray-400">
                       {i}
-                    </span>
-                  </div>
-                </div>
+                    </Caption>
+                  </Box>
+                </Box>
               )}
-            </div>
+            </Box>
           ))}
         </FlipBook>
-      </div>
+      </Box>
     </>
   );
 };

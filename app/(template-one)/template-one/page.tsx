@@ -1,28 +1,10 @@
 "use client";
 
-import { FlipBooks } from "@/components/core/flip-book/flip-book";
 import { Loader, PencilLine } from "lucide-react";
 import { useEffect, useState } from "react";
 import { PageBase } from "./toolkit/page-base";
-
-type PageItem = {
-  id: number;
-  isStart?: boolean;
-  isCover?: boolean;
-  image?: string;
-  title?: string;
-  description?: string;
-  video?: {
-    url: string;
-    start?: number;
-    end?: number;
-  };
-  audio?: {
-    url: string;
-    start?: number;
-    end?: number;
-  };
-};
+import { FlipBooks } from "@/components/core";
+import { PageItem } from "@/types/types";
 
 type FlipBookApiResponse = {
   isEditable: boolean;
@@ -40,10 +22,9 @@ const Page = () => {
       try {
         const res = await fetch("/api/flip-book");
         const data: FlipBookApiResponse = await res.json();
+
         setPages(data.book);
         setEditable(data.isEditable);
-      } catch (err) {
-        console.error("Failed to load flip book", err);
       } finally {
         setLoading(false);
       }
@@ -63,44 +44,38 @@ const Page = () => {
   return (
     <div className="relative">
       {editable && !isEditMode && (
-      <div className="sticky top-0 z-40 border-b bg-white/80 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <div>
-            <h1 className="text-lg font-semibold text-gray-900">
-              Story Editor
-            </h1>
-            <p className="text-xs text-gray-500">
-              View & edit your interactive flip book
-            </p>
-          </div>
+        <div className="sticky top-0 z-40 border-b bg-white/80 backdrop-blur">
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+            <div>
+              <h1 className="text-lg font-semibold">Story Editor</h1>
+              <p className="text-xs text-gray-500">
+                View & edit your interactive flip book
+              </p>
+            </div>
 
-         
             <button
               onClick={() => setIsEditMode(true)}
-              className="flex items-center gap-2 rounded-full bg-indigo-600 px-5 py-2 text-sm text-white shadow hover:bg-indigo-700 transition"
+              className="flex items-center gap-2 rounded-full bg-indigo-600 px-5 py-2 text-sm text-white hover:bg-indigo-700"
             >
               <PencilLine size={16} />
               Edit
             </button>
-         
+          </div>
         </div>
-      </div>
- )}
-      {/* MAIN CONTENT */}
+      )}
+
       <div className="mx-auto max-w-7xl px-6 py-6">
         {isEditMode ? (
-            <div className="p-6">
-              <PageBase
-                data={pages}
-                onCancel={() => setIsEditMode(false)}
-                onSave={(updated) => {
-                  setPages(updated);
-                  setIsEditMode(false);
-                }}
-              />
-          </div>
+          <PageBase
+            data={pages}
+            onCancel={() => setIsEditMode(false)}
+            onSave={(updated) => {
+              setPages(updated);
+              setIsEditMode(false);
+            }}
+          />
         ) : (
-            <FlipBooks pages={pages} />
+          <FlipBooks pages={pages} />
         )}
       </div>
     </div>

@@ -1,23 +1,25 @@
 "use client";
 
-import {
-  Controller,
-  Control,
-  FieldValues,
-  useWatch,
-} from "react-hook-form";
+import { Controller, Control, FieldValues, useWatch } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import { useMemo } from "react";
+import { cn } from "@/lib/utils";
 
 type InputFileProps = {
   name: string;
   control: Control<FieldValues>;
   label?: string;
+  required?: boolean;
 };
 
-export const InputFile = ({ name, control, label }: InputFileProps) => {
+export const InputFile = ({
+  name,
+  control,
+  label,
+  required,
+}: InputFileProps) => {
   const file = useWatch({
     control,
     name,
@@ -29,55 +31,62 @@ export const InputFile = ({ name, control, label }: InputFileProps) => {
   }, [file]);
 
   return (
-    <div className="space-y-2">
-      {label && (
-        <Label
-          htmlFor={name}
-          className="text-slate-900 text-sm font-medium block"
-        >
-          {label}
-        </Label>
-      )}
+    <Controller
+      name={name}
+      control={control}
+      rules={{
+        required: required || false,
+        validate: {
+          fileType: (file: File | null) =>
+            !file ||
+            ["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
+            "Only JPG, PNG or WEBP files are allowed",
 
-      <Controller
-        name={name}
-        control={control}
-        rules={{ required: true }}
-        render={({ field: { onChange } }) => (
+          fileSize: (file: File | null) =>
+            !file || file.size <= 5 * 1024 * 1024 || "Max size is 5MB",
+        },
+      }}
+      render={({ field, fieldState }) => (
+        <div className="space-y-2">
+          {label && (
+            <Label className="text-sm font-medium text-slate-900">
+              {label}
+            </Label>
+          )}
+
           <Input
             type="file"
             accept="image/jpeg,image/png,image/webp"
+            className={cn(
+              fieldState.error &&
+                "border-red-500 focus-visible:ring-red-500"
+            )}
             onChange={(e) => {
-              const selectedFile = e.target.files?.[0] ?? null;
-              if (!selectedFile) return;
-
-              const allowedTypes = [
-                "image/jpeg",
-                "image/png",
-                "image/webp",
-              ];
-
-              if (!allowedTypes.includes(selectedFile.type)) {
-                alert("Only JPG, PNG, and WEBP files are allowed.");
-                return;
-              }
-
-              onChange(selectedFile);
+              const file = e.target.files?.[0] ?? null;
+              field.onChange(file);
             }}
           />
-        )}
-      />
 
-      {preview && (
-        <Image
-          src={preview}
-          alt="Preview"
-          width={120}
-          height={120}
-          className="rounded border"
-          onLoad={() => URL.revokeObjectURL(preview)} 
-        />
+          {/* ERROR MESSAGE */}
+          {fieldState.error && (
+            <p className="text-xs text-red-600">
+              {fieldState.error.message}
+            </p>
+          )}
+
+          {/* PREVIEW */}
+          {preview && (
+            <Image
+              src={preview}
+              alt="Preview"
+              width={120}
+              height={120}
+              className="rounded border"
+              onLoad={() => URL.revokeObjectURL(preview)}
+            />
+          )}
+        </div>
       )}
-    </div>
+    />
   );
 };

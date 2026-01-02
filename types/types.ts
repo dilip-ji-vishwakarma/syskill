@@ -18,3 +18,37 @@ export const getYoutubeEmbedUrl = (
     end ? `&end=${end}` : ""
   }&controls=1&modestbranding=1`;
 };
+
+export type Media = {
+  url: string;
+  start?: number;
+  end?: number;
+};
+
+export type PageItem = {
+  id: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  video?: Media;
+  audio?: Media;
+};
+
+export type MediaForm = {
+  id: string;
+  title: string;
+  description: string;
+  image: File | null;
+  videoUrl: string;
+  videoStart?: number;
+  videoEnd?: number;
+  audioUrl: string;
+  audioStart?: number;
+  audioEnd?: number;
+};
+
+export type FormValues = {
+  cover: MediaForm;
+  pages: MediaForm[];
+  end: MediaForm;
+};
