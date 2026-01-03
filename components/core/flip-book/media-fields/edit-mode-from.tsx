@@ -66,7 +66,7 @@ export const EditModeFrom = ({
               </Button>
             </Box>
 
-            <MediaFields prefix={`pages.${index}`} control={control} />
+            <MediaFields control={control} prefix={`pages.${index}`} />
           </Box>
         ))}
 
@@ -91,7 +91,7 @@ export const EditModeFrom = ({
 
       <section className="space-y-4">
         <Title as="h4">End Page</Title>
-        <MediaFields prefix="end" control={control} imageLabel="End Image" />
+        <MediaFields control={control} prefix="end" imageLabel="End Image" />
       </section>
     </Box>
   );

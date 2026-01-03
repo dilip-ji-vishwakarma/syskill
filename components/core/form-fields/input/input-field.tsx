@@ -1,38 +1,43 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
-import { Controller, Control } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
+import { Control, Controller, useForm } from "react-hook-form";
 
 type InputFieldProps = {
   name: string;
-  control: Control;
   label?: string;
   placeholder?: string;
   type?: string;
-  rules?: object;
   className?: string;
   defaultValue?: string;
+  required?: boolean;
+  control: Control<any>;
 };
 
 export const InputField = ({
   name,
-  control,
   label,
   placeholder,
   type = "text",
-  rules,
   className,
   defaultValue = "",
+  required = false,
+  control,
 }: InputFieldProps) => {
+  const {
+    formState: { errors },
+  } = useForm();
   return (
     <div>
       {label && <Label htmlFor={name}>{label}</Label>}
       <Controller
         name={name}
         control={control}
-        rules={rules}
+        rules={{
+          required: required,
+        }}
         defaultValue={defaultValue}
         render={({ field, fieldState }) => (
           <>
@@ -44,9 +49,11 @@ export const InputField = ({
               className={cn(fieldState.error && "border-red-500", className)}
             />
 
-            {fieldState.error && (
-              <p className="text-xs text-red-500">{fieldState.error.message}</p>
-            )}
+            <div>
+              {errors.name && (
+                <span className="text-red-500 text-sm">Please Enter Name</span>
+              )}
+            </div>
           </>
         )}
       />

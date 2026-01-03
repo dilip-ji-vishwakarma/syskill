@@ -1,31 +1,36 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { Controller, Control } from "react-hook-form";
+import { Control, Controller, useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 
 type TextareaFieldProps = {
   name: string;
-  control: Control;
   label?: string;
   placeholder?: string;
   rules?: object;
   className?: string;
   defaultValue?: string;
   rows?: number;
+  required?: boolean;
+  control: Control<any>;
 };
 
 export const TextareaField = ({
   name,
-  control,
   label,
   placeholder,
-  rules,
+  required = false,
   className,
   defaultValue = "",
   rows = 4,
+  control
 }: TextareaFieldProps) => {
+  const {
+    formState: { errors },
+  } = useForm();
   return (
     <div className="space-y-1">
       {label && <Label htmlFor={name}>{label}</Label>}
@@ -33,7 +38,9 @@ export const TextareaField = ({
       <Controller
         name={name}
         control={control}
-        rules={rules}
+        rules={{
+          required: required,
+        }}
         defaultValue={defaultValue}
         render={({ field, fieldState }) => (
           <>
@@ -42,16 +49,10 @@ export const TextareaField = ({
               value={field.value ?? defaultValue}
               placeholder={placeholder}
               rows={rows}
-              className={cn(
-                fieldState.error && "border-red-500",
-                className
-              )}
+              className={cn(fieldState.error && "border-red-500", className)}
             />
-
-            {fieldState.error && (
-              <p className="text-xs text-red-500">
-                {fieldState.error.message}
-              </p>
+            {errors && (
+              <p className="text-xs text-red-500">{`Field is required`}</p>
             )}
           </>
         )}

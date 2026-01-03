@@ -46,9 +46,6 @@ export const WithValidation: Story = {
     label: "Email",
     placeholder: "Enter email",
     type: "email",
-    rules: {
-      required: "Email is required",
-    },
   },
 };
 
